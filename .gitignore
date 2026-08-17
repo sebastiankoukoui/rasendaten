@@ -1,0 +1,6 @@
+node_modules/
+
+# Roh-HTML des Matchcenters: gross, wiederherstellbar, und nicht unsere Daten.
+data/cache/
+data/*.log
+dist/

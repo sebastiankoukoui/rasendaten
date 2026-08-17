@@ -1,0 +1,45 @@
+{
+  "origin": "https://matchcenter.ifv.ch",
+  "orgId": 7,
+  "association": "IFV",
+  "lang": 1,
+  "throttleMs": 1500,
+  "targets": [
+    {
+      "key": "ifv-4liga-g2-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 2",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70463
+    },
+    {
+      "key": "ifv-cup-2027",
+      "type": "cup",
+      "label": "Physio Sportiv IFV-Cup",
+      "association": "IFV",
+      "season": 2027,
+      "cupId": 5250
+    },
+    {
+      "key": "ifv-3liga-g1-2026",
+      "type": "league",
+      "label": "3. Liga - Gruppe 1",
+      "association": "IFV",
+      "season": 2026,
+      "leagueId": 13029,
+      "stageId": 24455,
+      "groupId": 67610
+    },
+    {
+      "key": "ifv-cup-2026",
+      "type": "cup",
+      "label": "Physio Sportiv IFV-Cup",
+      "association": "IFV",
+      "season": 2026,
+      "cupId": 5067
+    }
+  ]
+}

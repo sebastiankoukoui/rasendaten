@@ -1,0 +1,65 @@
+{
+  "competitions": [
+    {
+      "key": "ifv-3liga-g1-2026",
+      "label": "3. Liga - Gruppe 1",
+      "league": "3. Liga",
+      "group": "Gruppe 1",
+      "association": "IFV",
+      "season": 2026,
+      "seasonLabel": "2025/26",
+      "firstMatch": "2025-08-24",
+      "lastMatch": "2026-06-06",
+      "type": "league",
+      "matches": 132,
+      "teams": 12,
+      "players": 423,
+      "collectedAt": "2026-08-17T22:39:33.428Z"
+    },
+    {
+      "key": "ifv-cup-2026",
+      "label": "Physio Sportiv IFV-Cup",
+      "association": "IFV",
+      "season": 2026,
+      "seasonLabel": "2025/26",
+      "firstMatch": "2025-08-14",
+      "lastMatch": "2026-05-23",
+      "type": "cup",
+      "matches": 66,
+      "teams": 67,
+      "players": 1340,
+      "collectedAt": "2026-08-17T22:41:37.412Z"
+    },
+    {
+      "key": "ifv-cup-2027",
+      "label": "Physio Sportiv IFV-Cup",
+      "association": "IFV",
+      "season": 2027,
+      "seasonLabel": "2026/27",
+      "firstMatch": "2026-08-13",
+      "lastMatch": "2026-08-18",
+      "type": "cup",
+      "matches": 20,
+      "teams": 48,
+      "players": 679,
+      "collectedAt": "2026-08-17T23:33:01.980Z"
+    },
+    {
+      "key": "ifv-4liga-g2-2027",
+      "label": "4. Liga - Gruppe 2",
+      "league": "4. Liga",
+      "group": "Gruppe 2",
+      "association": "IFV",
+      "season": 2027,
+      "seasonLabel": "2026/27",
+      "firstMatch": "2026-08-22",
+      "lastMatch": "2027-06-06",
+      "type": "league",
+      "matches": 0,
+      "teams": 10,
+      "players": 0,
+      "collectedAt": "2026-08-17T23:31:49.326Z"
+    }
+  ],
+  "builtAt": "2026-08-17T23:34:55.726Z"
+}

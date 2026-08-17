@@ -1,0 +1,16 @@
+{
+  "name": "sfv-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Advanced Statistiken fuer den Schweizer Amateurfussball (SFV / Regionalverbaende Matchcenter)",
+  "scripts": {
+    "crawl": "node src/cli.js crawl",
+    "build": "node src/cli.js build",
+    "update": "node src/cli.js update",
+    "serve": "node src/cli.js serve"
+  },
+  "dependencies": {
+    "playwright-core": "^1.49.0"
+  }
+}

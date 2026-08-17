@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rasendaten — Amateurfussball-Statistik</title>
+    <meta name="description" content="Erweiterte Statistiken zum Schweizer Amateurfussball." />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>⚽</text></svg>"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <a class="brand" href="#/uebersicht">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">
+            <strong>Rasendaten</strong>
+            <span>Amateurfussball · Advanced Stats</span>
+          </span>
+        </a>
+
+        <div class="topbar__tools">
+          <label class="select">
+            <span class="select__label">Wettbewerb</span>
+            <select id="competition-select" aria-label="Wettbewerb wählen"></select>
+          </label>
+          <button id="theme-toggle" class="icon-btn" type="button" aria-label="Farbschema wechseln">
+            <span data-theme-icon></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="tabs" id="tabs" aria-label="Bereiche"></nav>
+    </header>
+
+    <main id="view" class="view" tabindex="-1">
+      <div class="loading">Daten werden geladen …</div>
+    </main>
+
+    <footer class="footer">
+      <p id="data-note"></p>
+      <p class="footer__legal">
+        Prototyp. Datenquelle: öffentliches Matchcenter des jeweiligen Regionalverbands.
+        Für den regelmässigen automatisierten Bezug ist eine Freigabe des SFV nötig.
+      </p>
+    </footer>
+
+    <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+    <dialog id="drawer" class="drawer"><div class="drawer__body" id="drawer-body"></div></dialog>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
