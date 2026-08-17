@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { MatchcenterSession } from './lib/session.js';
 import { groupUrl, cupUrl, telegramUrl, seasonLabel } from './lib/urls.js';
+import { collectScouting, collectPreviousSeason } from './scouting.js';
 import { ROOT, readJson, writeJson } from './lib/io.js';
 
 const RAW_DIR = path.join(ROOT, 'data', 'raw');
@@ -84,6 +85,25 @@ async function collectLeague(session, target, cfg, opts, log) {
     }
   }
 
+  // Gegner-Dossiers: alle Partien jeder Mannschaft quer ueber die Wettbewerbe,
+  // plus die Bilanz der Vorsaison. Nur wenn im Target angefordert.
+  let dossiers = null;
+  let previousSeason = null;
+  if (target.scouting) {
+    const scoutOpts = typeof target.scouting === 'object' ? target.scouting : {};
+    dossiers = await collectScouting(session, target, cfg, ranking, telegrams, log);
+    const leagues = scoutOpts.historyLeagues ?? [13010, 13029, 13030, 13040];
+    log(`  Vorsaison ${target.season - 1} suchen ...`);
+    previousSeason = await collectPreviousSeason(
+      session,
+      target,
+      cfg,
+      ranking.map((r) => r.team),
+      leagues,
+      log,
+    );
+  }
+
   const groupMeta = (index.groups ?? []).find((g) => g.groupId === target.groupId);
   return {
     key: target.key,
@@ -103,6 +123,8 @@ async function collectLeague(session, target, cfg, opts, log) {
     ranking,
     rankingNote,
     officialScorers,
+    dossiers,
+    previousSeason,
     telegrams,
   };
 }

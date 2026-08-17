@@ -13,7 +13,14 @@
       "season": 2027,
       "leagueId": 13030,
       "stageId": 25896,
-      "groupId": 70463
+      "groupId": 70463,
+      "scouting": {
+        "historyLeagues": [
+          13029,
+          13030,
+          13040
+        ]
+      }
     },
     {
       "key": "ifv-cup-2027",

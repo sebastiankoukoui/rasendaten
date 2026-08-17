@@ -26,6 +26,9 @@ const slug = (s) =>
 
 const PLAYED_MIN = 90;
 
+/** 2026 -> "2025/26" */
+const seasonName = (s) => `${s - 1}/${String(s).slice(2)}`;
+
 // ---------------------------------------------------------------- merge ---
 
 /** Join the fixture list with the match reports into one canonical model. */
@@ -782,6 +785,142 @@ function formTable(teams, n = 5) {
   }));
 }
 
+// -------------------------------------------------------------- dossiers ---
+
+const COMPETITION = {
+  liga: 'Meisterschaft',
+  cup: 'Cup',
+  test: 'Vorbereitung',
+  other: 'Weiteres',
+};
+
+/**
+ * Wettbewerb einer Partie bestimmen. Die verlaessliche Quelle ist der
+ * Telegramm-Kopf ("Meisterschaft - 4. Liga / Gruppe 2", "Cup - IFV-Cup -
+ * Runde 1", "Trainingsspiele"). Fehlt der Bericht, hilft die Zugehoerigkeit
+ * zum eigenen Spielplan und sonst der Nummernkreis: Vorbereitungsspiele
+ * liegen bei 7xxxxx, Meisterschaftsspiele darunter.
+ */
+function classifyMatch(competition, match, ownFixtureIds) {
+  if (match.telegramId && ownFixtureIds.has(match.telegramId)) return 'liga';
+  const c = String(competition ?? '');
+  if (/^Meisterschaft/i.test(c)) return 'liga';
+  if (/^Cup|Cup\s*-/i.test(c)) return 'cup';
+  if (/Trainings|Freundschaft|Vorbereitung/i.test(c)) return 'test';
+  if (c) return 'other';
+  if (match.matchNo && match.matchNo >= 700000) return 'test';
+  return match.matchNo ? 'liga' : 'other';
+}
+
+/** Ein Telegramm ausserhalb des eigenen Spielplans in Match-Form bringen. */
+function matchFromTelegram(tg) {
+  return {
+    id: tg.telegramId,
+    telegramId: tg.telegramId,
+    matchNo: tg.matchNo,
+    date: tg.date,
+    time: tg.time,
+    venue: tg.venue,
+    competition: tg.competition,
+    home: { name: tg.home?.name, teamId: tg.home?.teamId, clubId: tg.home?.clubId },
+    away: { name: tg.away?.name, teamId: tg.away?.teamId, clubId: tg.away?.clubId },
+    score: tg.score,
+    halftime: tg.halftime,
+    played: !!tg.score,
+    hasReport: true,
+    events: normaliseEvents(tg),
+    lineups: tg.lineups ?? null,
+  };
+}
+
+function buildDossiers(raw, teamIndex) {
+  if (!raw.dossiers?.length) return null;
+  const tg = raw.telegrams ?? {};
+  const ownFixtureIds = new Set((raw.matches ?? []).map((m) => m.telegramId).filter(Boolean));
+  const prev = raw.previousSeason ?? null;
+
+  return raw.dossiers.map((d) => {
+    const teamRow = [...teamIndex.values()].find((t) => t.name === d.team);
+    const rows = d.matches
+      .map((m) => {
+        const report = m.telegramId ? tg[m.telegramId] : null;
+        const type = classifyMatch(report?.competition, m, ownFixtureIds);
+        const side = m.home.own || m.home.name === d.team ? 'home' : 'away';
+        const opponent = side === 'home' ? m.away : m.home;
+        const gf = side === 'home' ? m.homeGoals : m.awayGoals;
+        const ga = side === 'home' ? m.awayGoals : m.homeGoals;
+        return {
+          id: m.telegramId ?? m.matchNo,
+          telegramId: m.telegramId,
+          date: m.date,
+          time: m.time,
+          type,
+          competition: report?.competition ?? COMPETITION[type],
+          venue: report?.venue ?? null,
+          side,
+          opponent: opponent.name,
+          opponentTier: opponent.tier,
+          goalsFor: gf,
+          goalsAgainst: ga,
+          played: m.played,
+          outcome: m.played ? (gf > ga ? 'W' : gf === ga ? 'D' : 'L') : null,
+          hasReport: !!report,
+        };
+      })
+      .sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''));
+
+    const played = rows.filter((r) => r.played);
+    const upcoming = rows.filter((r) => !r.played);
+    const tally = (list) => ({
+      played: list.length,
+      wins: list.filter((r) => r.outcome === 'W').length,
+      draws: list.filter((r) => r.outcome === 'D').length,
+      losses: list.filter((r) => r.outcome === 'L').length,
+      goalsFor: sum(list.map((r) => r.goalsFor ?? 0)),
+      goalsAgainst: sum(list.map((r) => r.goalsAgainst ?? 0)),
+    });
+
+    // Vorsaison: Schlussrang plus die Einzelresultate aus der damaligen Gruppe.
+    const history = prev?.table?.[d.team] ?? null;
+    const historyMatches = (prev?.matches ?? [])
+      .filter((m) => m.home === d.team || m.away === d.team)
+      .map((m) => {
+        const side = m.home === d.team ? 'home' : 'away';
+        const gf = side === 'home' ? m.homeGoals : m.awayGoals;
+        const ga = side === 'home' ? m.awayGoals : m.homeGoals;
+        return {
+          date: m.date,
+          side,
+          opponent: side === 'home' ? m.away : m.home,
+          goalsFor: gf,
+          goalsAgainst: ga,
+          played: m.played,
+          outcome: m.played ? (gf > ga ? 'W' : gf === ga ? 'D' : 'L') : null,
+          league: m.league,
+          group: m.group,
+        };
+      })
+      .sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''));
+
+    return {
+      team: d.team,
+      teamKey: teamRow?.key ?? null,
+      teamId: d.teamId ?? null,
+      clubPageId: d.clubPageId ?? null,
+      matches: rows,
+      upcoming: upcoming.slice(0, 5),
+      form: played.slice(-5).map((r) => r.outcome).join(''),
+      totals: tally(played),
+      byType: Object.fromEntries(
+        Object.keys(COMPETITION).map((k) => [k, tally(played.filter((r) => r.type === k))]),
+      ),
+      previous: history,
+      previousForm: historyMatches.filter((m) => m.played).slice(-5).map((m) => m.outcome).join(''),
+      previousMatches: historyMatches,
+    };
+  });
+}
+
 // ------------------------------------------------------------------ build --
 
 export function buildTarget(raw) {
@@ -861,6 +1000,35 @@ export function buildTarget(raw) {
   }
 
   const teamKeys = teams.map((t) => t.key);
+  const dossiers = buildDossiers(raw, teamIndex);
+
+  // Spielberichte, die nicht zum eigenen Spielplan gehoeren (Vorbereitung,
+  // Cup) - damit sich auch diese Partien im Dashboard oeffnen lassen.
+  const ownIds = new Set(matches.map((m) => m.telegramId).filter(Boolean));
+  const extraMatches = {};
+  if (dossiers) {
+    for (const [id, tg] of Object.entries(raw.telegrams ?? {})) {
+      if (ownIds.has(Number(id))) continue;
+      const m = matchFromTelegram(tg);
+      extraMatches[m.id] = {
+        ...m,
+        events: m.events.map((e) => ({
+          type: e.type,
+          minute: e.minute,
+          stoppage: e.stoppage,
+          minuteRaw: e.minuteRaw,
+          side: e.side,
+          player: e.player,
+          personId: e.personId,
+          penalty: e.penalty ?? false,
+          ownGoal: e.ownGoal ?? false,
+          on: e.on ?? null,
+          off: e.off ?? null,
+          runningScore: e.runningScore ?? null,
+        })),
+      };
+    }
+  }
 
   // Die Saison-Bezeichnung aus den echten Spieldaten ableiten: beim Cup passt
   // der `s`-Parameter der Quelle nicht immer zum Spieljahr.
@@ -896,6 +1064,9 @@ export function buildTarget(raw) {
     officialNote: raw.rankingNote ?? null,
     officialScorers: raw.officialScorers ?? [],
     teams,
+    dossiers,
+    extraMatches: dossiers ? extraMatches : null,
+    previousSeasonLabel: raw.previousSeason ? seasonName(raw.previousSeason.season) : null,
     players: players
       .filter((p) => p.apps > 0 || p.goals > 0 || p.benchUnused > 0)
       .sort((a, b) => b.goals - a.goals || b.apps - a.apps),

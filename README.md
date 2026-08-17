@@ -10,7 +10,7 @@ Aktuell erfasst (alle IFV):
 | 3. Liga Gruppe 1 | 2025/26 | 132 Spiele, komplett — Referenzdatensatz |
 | Physio Sportiv IFV-Cup | 2025/26 | 66 Spiele, komplett bis zum Final |
 | Physio Sportiv IFV-Cup | 2026/27 | Runde 1 läuft, 20 von 24 Spielen |
-| 4. Liga Gruppe 2 | 2026/27 | 90 Spiele angesetzt, Start 22.08.2026 |
+| 4. Liga Gruppe 2 | 2026/27 | 90 Spiele angesetzt, Start 22.08.2026 · **Gegner-Check** aktiv |
 
 Die berechnete Tabelle der 3. Liga stimmt Platz für Platz, Punkt für Punkt und
 Tor für Tor mit der offiziellen Rangliste des Verbands überein (siehe
@@ -78,6 +78,31 @@ mehr Daten, als die Oberfläche aggregiert zeigt.
 
 Der Verband selbst publiziert davon aggregiert nur die Torschützenliste — und
 auch die nicht in jeder Liga.
+
+### Der Team-Spielplan (`a=pt`)
+
+Die zweite wichtige Ansicht. Sie listet **alle** Partien einer Mannschaft der
+laufenden Saison in einer Liste — Vorbereitungsspiele, Cup und Meisterschaft
+nebeneinander, mit der Liga-Stufe des Gegners in Klammern:
+
+```
+/default.aspx?oid=7&lng=1&v=<Verein>&t=<Team>&ls=<Staffel>&sg=<Gruppe>&a=pt
+```
+
+Das ist die Grundlage des Gegner-Checks: Wer im August wissen will, wie der
+erste Meisterschaftsgegner drauf ist, findet dessen Testspiele und Cup-Partien
+sonst nirgends gebündelt.
+
+Zwei Eigenheiten:
+
+- **Die Ansicht kennt nur die laufende Saison.** `s=` wird ignoriert, `ls`/`sg`
+  ändern nichts. Für die Vorsaison führt kein Weg an den Gruppen-Ranglisten
+  vorbei — der Collector sucht die Vorjahresligen der Reihe nach ab, bis jede
+  Mannschaft gefunden ist (eine Seite je Gruppe).
+- **Die Team-ID (`t=`) steht nur auf der Vereinsseite** (`v=`), und zwar ohne
+  Vereinsnamen im Label ("4. Liga 2"). Hat ein Verein zwei Mannschaften
+  derselben Liga, entscheidet ein Blick in deren `a=trr`-Ansicht, welche in
+  unserer Gruppe spielt.
 
 ### Die URL-Systematik
 
@@ -206,6 +231,15 @@ Verbandsaggregaten.
   sich die Spielzahl nicht sauber halbiert.
 - Rundenliste mit Datum, Resultat und Spielort
 - Cupsieger wird nur ausgewiesen, wenn die letzte Runde wirklich ein Endspiel ist
+
+**Gegner-Check** (`"scouting": true` im Target)
+- Je Mannschaft alle Partien der laufenden Saison über sämtliche Wettbewerbe,
+  mit Wettbewerbs-Kennzeichnung und Liga-Stufe des Gegners
+- Bilanz getrennt nach Vorbereitung, Cup und Meisterschaft
+- Form über alle Wettbewerbe statt nur über die Liga
+- Vorsaison: Liga, Gruppe, Schlussrang, Bilanz und alle Einzelresultate —
+  auch wenn die Mannschaft aus einer anderen Liga auf- oder abgestiegen ist
+- Spielberichte der Testspiele sind mit erfasst, inklusive Aufstellungen
 
 **Meisterschaft vor dem ersten Anpfiff**
 - Eigene Vorschau-Ansicht mit Countdown, erstem Spieltag und Teilnehmerfeld

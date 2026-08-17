@@ -88,7 +88,13 @@ const TABS_VORSCHAU = [
 const isCup = () => state.data?.meta.type === 'cup';
 /** Meisterschaft ist angesetzt, aber noch kein Spiel ausgetragen. */
 const notStarted = () => !isCup() && state.data?.league.matchesPlayed === 0;
-const tabs = () => (isCup() ? TABS_CUP : notStarted() ? TABS_VORSCHAU : TABS_LEAGUE);
+
+function tabs() {
+  const base = isCup() ? TABS_CUP : notStarted() ? TABS_VORSCHAU : TABS_LEAGUE;
+  if (!state.data?.dossiers?.length) return base;
+  // Gegner-Check direkt hinter die Uebersicht.
+  return [base[0], ['gegner', 'Gegner-Check'], ...base.slice(1)];
+}
 
 const teamByKey = (key) => state.data.teams.find((t) => t.key === key);
 const playersOf = (key) => state.data.players.filter((p) => p.teamKey === key);
@@ -410,6 +416,162 @@ function viewVorschau() {
         ],
         [...d.teams].sort((a, b) => a.name.localeCompare(b.name)),
       ),
+    ),
+  );
+}
+
+/* -------------------------------------------------------------- Gegner --- */
+
+const COMP_LABEL = { liga: 'Meisterschaft', cup: 'Cup', test: 'Vorbereitung', other: 'Weiteres' };
+
+const compBadge = (type) => h('span', { class: `badge badge--${type}` }, COMP_LABEL[type] ?? type);
+
+const bilanz = (t) => `${t.wins}S ${t.draws}U ${t.losses}N · ${t.goalsFor}:${t.goalsAgainst}`;
+
+/** "3. Liga" + "Gruppe 1" -> "3. Liga Gr. 1" */
+const shortGroup = (league, group) =>
+  [league, String(group ?? '').replace(/Gruppe\s*/i, 'Gr. ')].filter(Boolean).join(' ');
+
+/** Eine Partie als Zeile: Datum, Wettbewerb, Gegner, Resultat. */
+function matchRow(m, onOpen) {
+  const openable = m.hasReport && onOpen;
+  return h(
+    'li',
+    { class: openable ? 'is-clickable' : '', onclick: openable ? () => onOpen(m) : null },
+    h('span', { class: 'ml-date' }, m.date ? formatDate(m.date) : '–'),
+    compBadge(m.type),
+    h(
+      'span',
+      { class: 'ml-team' },
+      h('span', { class: 'muted' }, m.side === 'home' ? 'H ' : 'A '),
+      m.opponent,
+      m.opponentTier ? h('span', { class: 'tier' }, `${m.opponentTier}. L`) : null,
+    ),
+    h('span', { class: 'ml-score' }, m.played ? `${m.goalsFor}:${m.goalsAgainst}` : (m.time ?? '–')),
+    m.outcome ? formRun(m.outcome) : h('span', {}),
+  );
+}
+
+function viewGegner() {
+  const d = state.data;
+  const dossiers = [...d.dossiers].sort((a, b) => a.team.localeCompare(b.team));
+
+  return h(
+    'div',
+    { class: 'stack' },
+    pageHead(
+      'Formcheck über alle Wettbewerbe',
+      'Gegner-Check',
+      `Vorbereitungsspiele, Cup und Meisterschaft jeder Mannschaft dieser Gruppe – dazu die Bilanz der Saison ${d.previousSeasonLabel ?? 'davor'}. ` +
+        'Der Verband führt diese Partien getrennt; hier stehen sie nebeneinander.',
+    ),
+    h(
+      'div',
+      { class: 'grid grid--wide' },
+      dossiers.map((dos) => {
+        const p = dos.previous;
+        const recent = dos.matches.filter((m) => m.played).slice(-4).reverse();
+        return h(
+          'section',
+          { class: 'card', style: 'cursor:pointer', onclick: () => showDossier(dos.team) },
+          h(
+            'div',
+            { class: 'card__head' },
+            h('h2', {}, dos.team),
+            formRun(dos.form),
+          ),
+          statRow([
+            ['Gesamt', `${dos.totals.played}`, bilanz(dos.totals)],
+            ['Vorbereitung', `${dos.byType.test.played}`, bilanz(dos.byType.test)],
+            ['Cup', `${dos.byType.cup.played}`, dos.byType.cup.played ? bilanz(dos.byType.cup) : '–'],
+            [
+              d.previousSeasonLabel ?? 'Vorsaison',
+              p ? `${p.rank}.` : '–',
+              p ? `${shortGroup(p.league, p.group)} · ${p.points} Pkt` : 'nicht gefunden',
+            ],
+          ]),
+          recent.length
+            ? h('ul', { class: 'match-list' }, recent.map((m) => matchRow(m, null)))
+            : h('p', { class: 'muted', style: 'margin:0;font-size:13px' }, 'Noch keine Partie gespielt.'),
+        );
+      }),
+    ),
+  );
+}
+
+function showDossier(teamName) {
+  const d = state.data;
+  const dos = d.dossiers.find((x) => x.team === teamName);
+  if (!dos) return;
+  const p = dos.previous;
+  const today = new Date().toISOString().slice(0, 10);
+  const played = dos.matches.filter((m) => m.played).reverse();
+  const open = dos.matches.filter((m) => !m.played);
+  const upcoming = open.filter((m) => !m.date || m.date >= today).slice(0, 6);
+  // Vergangene Partien ohne erfasstes Resultat - meist abgesagte Testspiele.
+  const pending = open.filter((m) => m.date && m.date < today);
+  const openReport = (m) => showMatch(m.id);
+
+  openDrawer(
+    dos.team,
+    p
+      ? `${d.previousSeasonLabel}: ${p.league} ${p.group}, Rang ${p.rank} von ${p.teams} · ${p.points} Punkte`
+      : 'Vorsaison nicht gefunden',
+    h(
+      'div',
+      { class: 'stack' },
+      h(
+        'div',
+        { class: 'grid grid--tiles' },
+        tile(
+          'Bilanz seit Saisonstart',
+          `${dos.totals.wins}-${dos.totals.draws}-${dos.totals.losses}`,
+          `${dos.totals.goalsFor}:${dos.totals.goalsAgainst} Tore in ${dos.totals.played} Spielen`,
+        ),
+        tile('Vorbereitung', `${dos.byType.test.played}`, bilanz(dos.byType.test)),
+        tile('Cup', `${dos.byType.cup.played}`, dos.byType.cup.played ? bilanz(dos.byType.cup) : 'nicht dabei'),
+        tile('Meisterschaft', `${dos.byType.liga.played}`, dos.byType.liga.played ? bilanz(dos.byType.liga) : 'noch nicht gestartet'),
+        p
+          ? tile(
+              `Vorsaison ${d.previousSeasonLabel}`,
+              `${p.rank}.`,
+              `${p.league} ${p.group} · ${p.wins}S ${p.draws}U ${p.losses}N · ${p.goalsFor}:${p.goalsAgainst}`,
+            )
+          : null,
+      ),
+      played.length
+        ? card(
+            'Gespielte Partien dieser Saison',
+            'Alle Wettbewerbe, neueste zuerst · Klick öffnet den Spielbericht',
+            h('ul', { class: 'match-list' }, played.map((m) => matchRow(m, openReport))),
+          )
+        : null,
+      upcoming.length
+        ? card('Nächste Partien', null, h('ul', { class: 'match-list' }, upcoming.map((m) => matchRow(m, null))))
+        : null,
+      pending.length
+        ? card(
+            'Ohne erfasstes Resultat',
+            'Angesetzt, aber nie gewertet – meist abgesagte Vorbereitungsspiele',
+            h('ul', { class: 'match-list' }, pending.map((m) => matchRow(m, null))),
+          )
+        : null,
+      dos.previousMatches?.length
+        ? card(
+            `Saison ${d.previousSeasonLabel}`,
+            p ? `${p.league} · ${p.group}` : null,
+            dataTable(
+              [
+                { label: 'Datum', left: true, cell: (m) => formatDate(m.date, false) },
+                { label: 'Ort', left: true, cell: (m) => (m.side === 'home' ? 'Heim' : 'Auswärts') },
+                { label: 'Gegner', left: true, cell: (m) => m.opponent },
+                { label: 'Resultat', strong: true, cell: (m) => (m.played ? `${m.goalsFor}:${m.goalsAgainst}` : '–') },
+                { label: '', left: true, cell: (m) => (m.outcome ? formRun(m.outcome) : '') },
+              ],
+              dos.previousMatches,
+            ),
+          )
+        : null,
     ),
   );
 }
@@ -1489,7 +1651,8 @@ function showPlayer(key) {
 }
 
 function showMatch(id) {
-  const m = state.data.matches.find((x) => x.id === id);
+  const m =
+    state.data.matches.find((x) => x.id === id) ?? state.data.extraMatches?.[id] ?? null;
   if (!m) return;
 
   const evLabel = {
@@ -1562,7 +1725,9 @@ function showMatch(id) {
 
   openDrawer(
     `${m.home.name} – ${m.away.name}`,
-    `Runde ${m.round} · ${formatDate(m.date)} ${m.time ?? ''} · ${m.venue ?? ''}`,
+    [m.round ? `Runde ${m.round}` : (m.competition ?? null), formatDate(m.date), m.time, m.venue]
+      .filter(Boolean)
+      .join(' · '),
     h(
       'div',
       { class: 'stack' },
@@ -1582,6 +1747,7 @@ function showMatch(id) {
 
 const VIEWS = {
   uebersicht: viewUebersicht,
+  gegner: viewGegner,
   turnierbaum: viewTurnierbaum,
   runden: viewRunden,
   tabelle: viewTabelle,

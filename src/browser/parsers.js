@@ -445,6 +445,82 @@
     return match;
   };
 
+  // ------------------------------------------------------------- team views
+
+  /**
+   * a=pt - Team-Spielplan: alle Partien einer Mannschaft der laufenden Saison,
+   * quer ueber Meisterschaft, Cup und Vorbereitungsspiele. Bei Gegnern aus
+   * anderen Ligen steht deren Liga-Stufe in Klammern, z. B. "FC Buttikon 1 (3.)".
+   */
+  SFV.parseTeamSchedule = function (html) {
+    const d = parseDoc(html);
+    const readSide = (cell) => {
+      if (!cell) return { name: '', tier: null, own: false, clubPageId: null, orgId: null };
+      const link = cell.querySelector('a[href*="v="]');
+      const raw = txt(cell);
+      const tier = (raw.match(/\((\d+)\.\)\s*$/) || [])[1];
+      return {
+        name: raw.replace(/\s*\(\d+\.\)\s*$/, '').trim(),
+        tier: tier ? Number(tier) : null,
+        own: !!cell.querySelector('.tabMyTeam'),
+        clubPageId: link ? int(qp(link.getAttribute('href'), 'v')) : null,
+        orgId: link ? int(qp(link.getAttribute('href'), 'oid')) : null,
+      };
+    };
+
+    return [...d.querySelectorAll('.nisListeRD .row.spiel')].map((r) => {
+      const dateEl = r.querySelector('.date');
+      const dateTxt = dateEl ? txt(dateEl.querySelector('span')) : '';
+      const timeTxt = dateEl ? txt(dateEl).replace(dateTxt, '').trim() : '';
+      const hg = int(txt(r.querySelector('.torA')));
+      const ag = int(txt(r.querySelector('.torB')));
+      const tgHref = r.querySelector('.telegramm-link a')?.getAttribute('href') ?? '';
+      const info = txt(r.querySelector('.font-small'));
+      return {
+        telegramId: int(qp(tgHref, 'tg')),
+        matchNo: int((info.match(/Spielnummer\s*(\d+)/) || [])[1]),
+        date: isoDate(dateTxt),
+        time: timeTxt || null,
+        home: readSide(r.querySelector('.teamA')),
+        away: readSide(r.querySelector('.teamB')),
+        homeGoals: hg,
+        awayGoals: ag,
+        played: hg !== null && ag !== null,
+      };
+    });
+  };
+
+  /** Mannschaftsliste einer Vereinsseite (v=...): Label -> Team-ID. */
+  SFV.parseClubTeams = function (html) {
+    const d = parseDoc(html);
+    const seen = new Set();
+    const teams = [];
+    d.querySelectorAll('a[href*="t="]').forEach((a) => {
+      const href = a.getAttribute('href') || '';
+      const teamId = int(qp(href, 't'));
+      if (!teamId || seen.has(teamId)) return;
+      const label = txt(a);
+      if (!label) return;
+      seen.add(teamId);
+      teams.push({
+        teamId,
+        label,
+        orgId: int(qp(href, 'oid')),
+        clubPageId: int(qp(href, 'v')),
+      });
+    });
+    return { teams };
+  };
+
+  /** Aus der Team-Ansicht (a=trr) die Gruppe lesen, in der das Team spielt. */
+  SFV.parseTeamGroup = function (html) {
+    const d = parseDoc(html);
+    const link = [...d.querySelectorAll('a[href*="sg="]')].find((a) => /a=trr/.test(a.getAttribute('href') || ''));
+    if (!link) return null;
+    const href = link.getAttribute('href');
+    return { stageId: int(qp(href, 'ls')), groupId: int(qp(href, 'sg')) };
+  };
+
   // ------------------------------------------------------------------ cup
 
   SFV.parseCup = function (html) {
