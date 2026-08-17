@@ -1,5 +1,7 @@
 # Rasendaten — Advanced Stats für den Schweizer Amateurfussball
 
+**Live: https://sebastiankoukoui.github.io/rasendaten/**
+
 Prototyp eines Statistik-Dashboards für Ligen der SFV-Regionalverbände.
 Aktuell erfasst (alle IFV):
 
