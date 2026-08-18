@@ -834,12 +834,19 @@ function matchFromTelegram(tg) {
 }
 
 function buildDossiers(raw, teamIndex) {
-  if (!raw.dossiers?.length) return null;
+  const hasSchedules = !!raw.dossiers?.length;
+  const prevTable = raw.previousSeason?.table ?? null;
+  if (!hasSchedules && !prevTable) return null;
+  // Ohne Team-Spielplaene bleibt die Vorsaison-Bilanz - dafuer reicht die
+  // Mannschaftsliste aus der Rangliste.
+  const source = hasSchedules
+    ? raw.dossiers
+    : (raw.ranking ?? []).map((r) => ({ team: r.team, clubPageId: r.clubPageId, matches: [] }));
   const tg = raw.telegrams ?? {};
   const ownFixtureIds = new Set((raw.matches ?? []).map((m) => m.telegramId).filter(Boolean));
   const prev = raw.previousSeason ?? null;
 
-  return raw.dossiers.map((d) => {
+  return source.map((d) => {
     const teamRow = [...teamIndex.values()].find((t) => t.name === d.team);
     const rows = d.matches
       .map((m) => {
@@ -1107,6 +1114,94 @@ export function buildTarget(raw) {
   };
 }
 
+/**
+ * Alle Partien einer Mannschaft ueber saemtliche erfassten Wettbewerbe und
+ * Saisons hinweg. Das Matchcenter kennt diese Sicht nicht - dort haengt jede
+ * Partie an ihrem Wettbewerb. Fuer die Einschaetzung einer Mannschaft ist aber
+ * genau die Zusammenfuehrung interessant.
+ */
+function indexTeamMatches(built, index, { extrasOnly = false } = {}) {
+  const meta = built.meta;
+  const rankOf = new Map(built.teams.map((t) => [t.name, t]));
+
+  const push = (name, row) => {
+    const key = slug(name);
+    if (!key) return;
+    if (!index[key]) index[key] = { name, competitions: [], matches: [], _seen: [] };
+    const seen = index[key]._seen;
+    // Dieselbe Partie kann in zwei Datensaetzen liegen (Cup-Wettbewerb und
+    // Team-Spielplan des Gegners) - der Wettbewerb selbst hat Vorrang.
+    if (row.id && seen.includes(row.id)) return;
+    if (row.id) seen.push(row.id);
+    index[key].matches.push(row);
+  };
+
+  const record = (m, type, competitionLabel) => {
+    if (!m.home?.name || !m.away?.name) return;
+    for (const side of ['home', 'away']) {
+      const me = side === 'home' ? m.home.name : m.away.name;
+      const other = side === 'home' ? m.away.name : m.home.name;
+      const gf = m.score ? (side === 'home' ? m.score.home : m.score.away) : null;
+      const ga = m.score ? (side === 'home' ? m.score.away : m.score.home) : null;
+      push(me, {
+        id: m.id,
+        date: m.date,
+        time: m.time ?? null,
+        competitionKey: meta.key,
+        competition: competitionLabel,
+        seasonLabel: meta.seasonLabel,
+        type,
+        side,
+        opponent: other,
+        goalsFor: gf,
+        goalsAgainst: ga,
+        played: !!m.score,
+        outcome: m.score ? (gf > ga ? 'W' : gf === ga ? 'D' : 'L') : null,
+        hasReport: !!m.lineups || !!m.events?.length,
+      });
+    }
+  };
+
+  const leagueLabel = [meta.league, meta.group].filter(Boolean).join(' ') || meta.label;
+  if (!extrasOnly) {
+    for (const m of built.matches) {
+      record(m, meta.type === 'cup' ? 'cup' : 'liga', meta.type === 'cup' ? meta.label : leagueLabel);
+    }
+  }
+  for (const m of Object.values(built.extraMatches ?? {})) {
+    const type = /^Cup/i.test(m.competition ?? '')
+      ? 'cup'
+      : /Trainings|Freundschaft/i.test(m.competition ?? '')
+        ? 'test'
+        : /^Meisterschaft/i.test(m.competition ?? '')
+          ? 'liga'
+          : 'other';
+    record(m, type, m.competition ?? 'Weiteres');
+  }
+
+  if (extrasOnly) return;
+
+  // Teilnahme je Wettbewerb vermerken, inklusive Schlussrang falls vorhanden.
+  const names = new Set([...built.matches.flatMap((m) => [m.home?.name, m.away?.name])].filter(Boolean));
+  for (const name of names) {
+    const key = slug(name);
+    if (!index[key]) index[key] = { name, competitions: [], matches: [] };
+    const row = rankOf.get(name);
+    index[key].competitions.push({
+      key: meta.key,
+      label: meta.label,
+      league: meta.league,
+      group: meta.group,
+      seasonLabel: meta.seasonLabel,
+      type: meta.type,
+      // Im Cup sagt eine Tabellenposition nichts aus.
+      rank: meta.type === 'cup' || !row?.played ? null : row.rank,
+      points: meta.type === 'cup' || !row?.played ? null : row.points,
+      played: row?.played ?? 0,
+    });
+  }
+}
+
 export function buildAll() {
   const files = listJson(RAW_DIR);
   if (!files.length) {
@@ -1114,10 +1209,13 @@ export function buildAll() {
     return [];
   }
   const index = [];
+  const teamIndex = {};
+  const builtAll = [];
   for (const file of files) {
     const raw = readJson(file);
     if (!raw?.matches) continue;
     const built = buildTarget(raw);
+    builtAll.push(built);
     writeJson(path.join(OUT_DIR, `${raw.key}.json`), built, { pretty: false });
     index.push({
       key: built.meta.key,
@@ -1140,6 +1238,19 @@ export function buildAll() {
         `${built.league.matchesPlayed} Spiele, ${built.players.length} Spieler`,
     );
   }
+  // Zwei Durchgaenge: erst die Wettbewerbe selbst, dann die Zusatzberichte -
+  // so gewinnt bei Doppelnennung immer der richtige Wettbewerb.
+  for (const b of builtAll) indexTeamMatches(b, teamIndex);
+  for (const b of builtAll) indexTeamMatches(b, teamIndex, { extrasOnly: true });
+
+  for (const entry of Object.values(teamIndex)) {
+    delete entry._seen;
+    entry.matches.sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''));
+    entry.competitions.sort((a, b) => String(b.seasonLabel).localeCompare(String(a.seasonLabel)));
+  }
+  writeJson(path.join(OUT_DIR, 'teams.json'), { teams: teamIndex, builtAt: new Date().toISOString() }, { pretty: false });
+  console.log(`Team-Index: ${Object.keys(teamIndex).length} Mannschaften`);
+
   // Vollste Datensaetze zuerst - danach greift die Oberflaeche automatisch.
   index.sort((a, b) => b.matches - a.matches || String(a.key).localeCompare(String(b.key)));
   writeJson(path.join(OUT_DIR, 'index.json'), { competitions: index, builtAt: new Date().toISOString() });

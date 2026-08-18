@@ -91,7 +91,12 @@ async function collectLeague(session, target, cfg, opts, log) {
   let previousSeason = null;
   if (target.scouting) {
     const scoutOpts = typeof target.scouting === 'object' ? target.scouting : {};
-    dossiers = await collectScouting(session, target, cfg, ranking, telegrams, log);
+    // Team-Spielplaene zeigen immer die laufende Saison. Fuer eine
+    // abgeschlossene Meisterschaft waere das die falsche - dann nur die
+    // Vorsaison-Bilanz holen.
+    if (scoutOpts.teamSchedules !== false) {
+      dossiers = await collectScouting(session, target, cfg, ranking, telegrams, log);
+    }
     const leagues = scoutOpts.historyLeagues ?? [13010, 13029, 13030, 13040];
     log(`  Vorsaison ${target.season - 1} suchen ...`);
     previousSeason = await collectPreviousSeason(

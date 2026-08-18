@@ -51,6 +51,7 @@ const teamCell = (name) =>
 
 const state = {
   index: null,
+  teams: null,
   key: null,
   data: null,
   view: 'uebersicht',
@@ -372,7 +373,7 @@ function viewVorschau() {
     pageHead(
       `${d.meta.association} · Saison ${d.meta.seasonLabel}`,
       `${d.meta.league ?? ''} · ${d.meta.group ?? d.meta.label}`,
-      'Der Spielplan steht, gespielt wurde noch nicht. Sobald die ersten Resultate erfasst sind, füllen sich Tabelle, Analyse und Spielerstatistik automatisch.',
+      'Der Spielplan steht, gespielt wurde noch nicht. Ein Klick auf eine Mannschaft öffnet ihr Profil mit allen bisher erfassten Partien – Vorbereitung, Cup und Vorsaison.',
     ),
     h(
       'div',
@@ -413,8 +414,14 @@ function viewVorschau() {
         [
           { label: 'Team', left: true, cell: (t) => teamCell(t.name) },
           { label: 'Spiele angesetzt', cell: (t) => d.matches.filter((m) => m.homeKey === t.key || m.awayKey === t.key).length },
+          {
+            label: 'Erfasste Partien',
+            title: 'Alle Partien dieser Mannschaft über sämtliche Wettbewerbe',
+            cell: (t) => teamHistory(t.name)?.matches.filter((m) => m.played).length ?? '–',
+          },
         ],
         [...d.teams].sort((a, b) => a.name.localeCompare(b.name)),
+        { onRow: (t) => showTeam(t.key) },
       ),
     ),
   );
@@ -499,82 +506,8 @@ function viewGegner() {
   );
 }
 
-function showDossier(teamName) {
-  const d = state.data;
-  const dos = d.dossiers.find((x) => x.team === teamName);
-  if (!dos) return;
-  const p = dos.previous;
-  const today = new Date().toISOString().slice(0, 10);
-  const played = dos.matches.filter((m) => m.played).reverse();
-  const open = dos.matches.filter((m) => !m.played);
-  const upcoming = open.filter((m) => !m.date || m.date >= today).slice(0, 6);
-  // Vergangene Partien ohne erfasstes Resultat - meist abgesagte Testspiele.
-  const pending = open.filter((m) => m.date && m.date < today);
-  const openReport = (m) => showMatch(m.id);
-
-  openDrawer(
-    dos.team,
-    p
-      ? `${d.previousSeasonLabel}: ${p.league} ${p.group}, Rang ${p.rank} von ${p.teams} · ${p.points} Punkte`
-      : 'Vorsaison nicht gefunden',
-    h(
-      'div',
-      { class: 'stack' },
-      h(
-        'div',
-        { class: 'grid grid--tiles' },
-        tile(
-          'Bilanz seit Saisonstart',
-          `${dos.totals.wins}-${dos.totals.draws}-${dos.totals.losses}`,
-          `${dos.totals.goalsFor}:${dos.totals.goalsAgainst} Tore in ${dos.totals.played} Spielen`,
-        ),
-        tile('Vorbereitung', `${dos.byType.test.played}`, bilanz(dos.byType.test)),
-        tile('Cup', `${dos.byType.cup.played}`, dos.byType.cup.played ? bilanz(dos.byType.cup) : 'nicht dabei'),
-        tile('Meisterschaft', `${dos.byType.liga.played}`, dos.byType.liga.played ? bilanz(dos.byType.liga) : 'noch nicht gestartet'),
-        p
-          ? tile(
-              `Vorsaison ${d.previousSeasonLabel}`,
-              `${p.rank}.`,
-              `${p.league} ${p.group} · ${p.wins}S ${p.draws}U ${p.losses}N · ${p.goalsFor}:${p.goalsAgainst}`,
-            )
-          : null,
-      ),
-      played.length
-        ? card(
-            'Gespielte Partien dieser Saison',
-            'Alle Wettbewerbe, neueste zuerst · Klick öffnet den Spielbericht',
-            h('ul', { class: 'match-list' }, played.map((m) => matchRow(m, openReport))),
-          )
-        : null,
-      upcoming.length
-        ? card('Nächste Partien', null, h('ul', { class: 'match-list' }, upcoming.map((m) => matchRow(m, null))))
-        : null,
-      pending.length
-        ? card(
-            'Ohne erfasstes Resultat',
-            'Angesetzt, aber nie gewertet – meist abgesagte Vorbereitungsspiele',
-            h('ul', { class: 'match-list' }, pending.map((m) => matchRow(m, null))),
-          )
-        : null,
-      dos.previousMatches?.length
-        ? card(
-            `Saison ${d.previousSeasonLabel}`,
-            p ? `${p.league} · ${p.group}` : null,
-            dataTable(
-              [
-                { label: 'Datum', left: true, cell: (m) => formatDate(m.date, false) },
-                { label: 'Ort', left: true, cell: (m) => (m.side === 'home' ? 'Heim' : 'Auswärts') },
-                { label: 'Gegner', left: true, cell: (m) => m.opponent },
-                { label: 'Resultat', strong: true, cell: (m) => (m.played ? `${m.goalsFor}:${m.goalsAgainst}` : '–') },
-                { label: '', left: true, cell: (m) => (m.outcome ? formRun(m.outcome) : '') },
-              ],
-              dos.previousMatches,
-            ),
-          )
-        : null,
-    ),
-  );
-}
+/** Der Gegner-Check öffnet dasselbe Teamprofil wie überall sonst. */
+const showDossier = (teamName) => showTeam(teamName);
 
 /* ------------------------------------------------------------------- Cup --- */
 
@@ -1465,131 +1398,294 @@ function viewDaten() {
 
 /* ------------------------------------------------------------------ details */
 
-function showTeam(key) {
-  const d = state.data;
-  const t = teamByKey(key);
-  if (!t) return;
-  const squad = playersOf(key).sort((a, b) => b.apps - a.apps || b.goals - a.goals);
-  const rounds = [...new Set(d.matches.map((m) => m.round))].sort((a, b) => a - b);
+/** Muss mit `slug()` in src/aggregate.js übereinstimmen. */
+const slugify = (s) =>
+  String(s ?? '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 
-  // Einsatz-Raster: Spieler x Runde
-  const heat = h(
-    'table',
-    { class: 'heat' },
+const teamHistory = (name) => state.teams?.[slugify(name)] ?? null;
+
+/** Eine Partie öffnen, auch wenn sie zu einem anderen Wettbewerb gehört. */
+async function openMatchAnywhere(competitionKey, id) {
+  if (competitionKey && competitionKey !== state.key) {
+    const select = document.getElementById('competition-select');
+    await loadCompetition(competitionKey);
+    if (select) select.value = competitionKey;
+    render();
+  }
+  showMatch(id);
+}
+
+/** Partie-Zeile aus dem wettbewerbsübergreifenden Index. */
+function historyRow(m) {
+  const openable = m.hasReport;
+  return h(
+    'li',
+    {
+      class: openable ? 'is-clickable' : '',
+      onclick: openable ? () => openMatchAnywhere(m.competitionKey, m.id) : null,
+    },
+    h('span', { class: 'ml-date' }, m.date ? formatDate(m.date) : '–'),
+    h('span', { class: `badge badge--${m.type}`, title: m.competition }, COMP_LABEL[m.type] ?? m.type),
     h(
-      'thead',
-      {},
-      h('tr', {}, h('th', {}, ''), rounds.map((r) => h('th', { style: 'text-align:center;padding:0 0 4px' }, r % 2 ? r : ''))),
+      'span',
+      { class: 'ml-team' },
+      h('span', { class: 'muted' }, m.side === 'home' ? 'H ' : 'A '),
+      m.opponent,
     ),
-    h(
-      'tbody',
-      {},
-      squad
-        .filter((p) => p.apps + p.benchUnused > 0)
-        .slice(0, 26)
-        .map((p) =>
-          h(
-            'tr',
-            {},
-            h('th', {}, p.name),
-            rounds.map((r) => {
-              const log = p.matchLog.find((l) => l.round === r);
-              const cls = log ? (log.role === 'start' ? 'cell--start' : log.role === 'sub' ? 'cell--sub' : 'cell--bench') : '';
-              const label = log
-                ? { start: 'Startelf', sub: 'eingewechselt', bench: 'Bank ohne Einsatz' }[log.role]
-                : 'nicht im Aufgebot';
-              return h('td', {}, h('div', {
-                class: `cell ${cls}`,
-                title: `${p.name} · Runde ${r}: ${label}${log?.goals ? ` · ${log.goals} Tor(e)` : ''}`,
-              }));
-            }),
-          ),
-        ),
-    ),
+    h('span', { class: 'ml-score' }, m.played ? `${m.goalsFor}:${m.goalsAgainst}` : (m.time ?? '–')),
+    m.outcome ? formRun(m.outcome) : h('span', {}),
   );
+}
 
-  const goalBox = chartBox(170);
-  columnChart(goalBox, {
-    data: Object.keys(t.goalsForByBucket).map((k) => ({
-      label: k,
-      values: [t.goalsForByBucket[k], t.goalsAgainstByBucket[k]],
-    })),
-    series: [
-      { name: 'erzielt', color: 'var(--series-1)' },
-      { name: 'kassiert', color: 'var(--series-2)' },
-    ],
-    height: 170,
-  });
+/**
+ * Das Teamprofil - der eine Ort, an dem alles über eine Mannschaft steht.
+ *
+ * Es funktioniert in drei Ausbaustufen, je nachdem was vorliegt:
+ * die Kennzahlen des laufenden Wettbewerbs, das Dossier mit Vorbereitung und
+ * Vorsaison, und in jedem Fall die Partien über alle erfassten Wettbewerbe.
+ */
+function showTeam(keyOrName) {
+  const d = state.data;
+  const t = teamByKey(keyOrName) ?? d.teams.find((x) => x.name === keyOrName) ?? null;
+  const name = t?.name ?? String(keyOrName);
+  const dos = d.dossiers?.find((x) => x.team === name) ?? null;
+  const global = teamHistory(name);
+  const p = dos?.previous ?? null;
+
+  const hasLeagueStats = !!t && t.played > 0;
+  const squad = t ? playersOf(t.key).sort((a, b) => b.apps - a.apps || b.goals - a.goals) : [];
+  const historyPlayed = (global?.matches ?? []).filter((m) => m.played);
+  const today = new Date().toISOString().slice(0, 10);
+  const historyUpcoming = (global?.matches ?? [])
+    .filter((m) => !m.played && (!m.date || m.date >= today))
+    .slice(0, 8);
+
+  // Gespielte Partien nach Saison, neueste zuerst - das ist der Blick, den
+  // man zur Einschaetzung einer Mannschaft braucht.
+  const bySeason = new Map();
+  for (const m of [...historyPlayed].reverse()) {
+    if (!bySeason.has(m.seasonLabel)) bySeason.set(m.seasonLabel, []);
+    bySeason.get(m.seasonLabel).push(m);
+  }
+
+  // ---- Kopfzeile ----
+  const sub = hasLeagueStats
+    ? `${d.meta.league ?? d.meta.label} ${d.meta.group ?? ''} · Rang ${t.rank} · ${t.points} Punkte · ${t.goalsFor}:${t.goalsAgainst}`
+    : `${d.meta.league ?? d.meta.label} ${d.meta.group ?? ''} · noch kein Spiel in diesem Wettbewerb`;
+
+  // ---- Kacheln ----
+  const tiles = [];
+  if (hasLeagueStats) {
+    tiles.push(
+      tile('Punkte pro Spiel', num(t.ppg, 2)),
+      tile('Über Erwartung', signed(t.pointsOverExpected, 1), `erwartet ${num(t.expectedPoints, 1)}`),
+      tile('Zu Null', t.cleanSheets, `${t.failedToScore}× ohne eigenes Tor`),
+      tile('Längste Siegesserie', t.streaks.longestWins, `${t.streaks.longestUnbeaten} ungeschlagen`),
+    );
+  }
+  if (dos && dos.totals.played) {
+    tiles.push(
+      tile('Vorbereitung', dos.byType.test.played, bilanz(dos.byType.test)),
+      tile('Cup', dos.byType.cup.played, dos.byType.cup.played ? bilanz(dos.byType.cup) : 'nicht dabei'),
+    );
+  }
+  if (p) {
+    tiles.push(
+      tile(
+        `Vorsaison ${d.previousSeasonLabel}`,
+        `${p.rank}.`,
+        `${shortGroup(p.league, p.group)} · ${p.wins}S ${p.draws}U ${p.losses}N · ${p.points} Pkt`,
+      ),
+    );
+  }
+  if (historyPlayed.length) {
+    const w = historyPlayed.filter((m) => m.outcome === 'W').length;
+    const dr = historyPlayed.filter((m) => m.outcome === 'D').length;
+    tiles.push(
+      tile('Erfasste Partien', historyPlayed.length, `${w}S ${dr}U ${historyPlayed.length - w - dr}N über alle Wettbewerbe`),
+    );
+  }
+
+  // ---- Torverteilung ----
+  let goalBox = null;
+  if (hasLeagueStats) {
+    goalBox = chartBox(170);
+    columnChart(goalBox, {
+      data: Object.keys(t.goalsForByBucket).map((k) => ({
+        label: k,
+        values: [t.goalsForByBucket[k], t.goalsAgainstByBucket[k]],
+      })),
+      series: [
+        { name: 'erzielt', color: 'var(--series-1)' },
+        { name: 'kassiert', color: 'var(--series-2)' },
+      ],
+      height: 170,
+    });
+  }
+
+  // ---- Einsatzraster ----
+  let heat = null;
+  if (hasLeagueStats && squad.some((pl) => pl.apps > 0)) {
+    const rounds = [...new Set(d.matches.map((m) => m.round).filter(Boolean))].sort((a, b) => a - b);
+    heat = h(
+      'table',
+      { class: 'heat' },
+      h('thead', {}, h('tr', {}, h('th', {}, ''), rounds.map((r) => h('th', { style: 'text-align:center;padding:0 0 4px' }, r % 2 ? r : '')))),
+      h(
+        'tbody',
+        {},
+        squad
+          .filter((pl) => pl.apps + pl.benchUnused > 0)
+          .slice(0, 26)
+          .map((pl) =>
+            h(
+              'tr',
+              {},
+              h('th', {}, pl.name),
+              rounds.map((r) => {
+                const log = pl.matchLog.find((l) => l.round === r);
+                const cls = log ? (log.role === 'start' ? 'cell--start' : log.role === 'sub' ? 'cell--sub' : 'cell--bench') : '';
+                const label = log
+                  ? { start: 'Startelf', sub: 'eingewechselt', bench: 'Bank ohne Einsatz' }[log.role]
+                  : 'nicht im Aufgebot';
+                return h('td', {}, h('div', {
+                  class: `cell ${cls}`,
+                  title: `${pl.name} · Runde ${r}: ${label}${log?.goals ? ` · ${log.goals} Tor(e)` : ''}`,
+                }));
+              }),
+            ),
+          ),
+      ),
+    );
+  }
 
   openDrawer(
-    t.name,
-    `Rang ${t.rank} · ${t.points} Punkte · ${t.goalsFor}:${t.goalsAgainst} Tore · Elo ${d.elo.current[t.key] ?? '–'}`,
+    name,
+    sub,
     h(
       'div',
       { class: 'stack' },
-      h(
-        'div',
-        { class: 'grid grid--tiles' },
-        tile('Punkte pro Spiel', num(t.ppg, 2)),
-        tile('Über Erwartung', signed(t.pointsOverExpected, 1), `erwartet ${num(t.expectedPoints, 1)}`),
-        tile('Längste Siegesserie', t.streaks.longestWins),
-        tile('Ungeschlagen (max.)', t.streaks.longestUnbeaten),
-        tile('Zu Null', t.cleanSheets),
-        tile('Strafpunkte', t.cardPoints, `${t.cards.yellow}G · ${t.cards.secondYellow}GR · ${t.cards.red}R`),
-      ),
-      card(
-        'Tore nach Spielminute',
-        null,
-        legend([
-          { name: 'erzielt', color: 'var(--series-1)' },
-          { name: 'kassiert', color: 'var(--series-2)' },
-        ]),
-        goalBox,
-      ),
-      card(
-        'Einsätze pro Runde',
-        'Startelf, Einwechslung, Bank',
-        legend([
-          { name: 'Startelf', color: 'var(--seq-450)' },
-          { name: 'eingewechselt', color: 'var(--seq-250)' },
-          { name: 'Bank ohne Einsatz', color: 'var(--surface-sunk)' },
-        ]),
-        h('div', { class: 'table-wrap' }, heat),
-      ),
-      card(
-        'Kader',
-        `${t.playersUsed} eingesetzte Spieler`,
-        dataTable(
-          [
-            { label: 'Spieler', left: true, cell: (p) => p.name },
-            { label: 'Pos', left: true, cell: (p) => h('span', { class: 'muted' }, p.positionGroup) },
-            { label: 'Sp', cell: (p) => p.apps },
-            { label: 'Start', cell: (p) => p.starts },
-            { label: 'Ein', cell: (p) => p.subOn },
-            { label: 'Bank', cell: (p) => p.benchUnused },
-            { label: 'Tore', strong: true, cell: (p) => p.goals },
-            { label: 'G/GR/R', cell: (p) => `${p.yellow}/${p.secondYellow}/${p.red}` },
-          ],
-          squad,
-          { onRow: (p) => showPlayer(p.key) },
-        ),
-      ),
-      card(
-        'Resultate',
-        null,
-        dataTable(
-          [
-            { label: 'Rd', cell: (r) => r.round },
-            { label: 'Datum', left: true, cell: (r) => formatDate(r.date, false) },
-            { label: 'Ort', left: true, cell: (r) => (r.side === 'home' ? 'Heim' : 'Auswärts') },
-            { label: 'Gegner', left: true, cell: (r) => r.opponent },
-            { label: 'Resultat', strong: true, cell: (r) => `${r.gf}:${r.ga}` },
-            { label: '', left: true, cell: (r) => formRun(r.outcome) },
-          ],
-          t.results,
-          { onRow: (r) => showMatch(r.matchId) },
-        ),
-      ),
+      tiles.length ? h('div', { class: 'grid grid--tiles' }, tiles) : null,
+
+      // Der Kern: alle Partien, quer über Wettbewerbe und Saisons.
+      bySeason.size
+        ? card(
+            'Gespielte Partien',
+            `${historyPlayed.length} über alle Wettbewerbe · neueste zuerst · Klick öffnet den Spielbericht`,
+            ...[...bySeason.entries()].map(([season, rows]) =>
+              h(
+                'div',
+                { style: 'margin-bottom:14px' },
+                h('h4', { style: 'font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin-bottom:4px' }, `Saison ${season}`),
+                h('ul', { class: 'match-list' }, rows.map(historyRow)),
+              ),
+            ),
+          )
+        : null,
+
+      historyUpcoming.length
+        ? card(
+            'Nächste Partien',
+            'Alle Wettbewerbe',
+            h('ul', { class: 'match-list' }, historyUpcoming.map(historyRow)),
+          )
+        : null,
+
+      global?.competitions?.length
+        ? card(
+            'Wettbewerbe',
+            'Klick wechselt den Datensatz',
+            dataTable(
+              [
+                { label: 'Saison', left: true, cell: (c) => c.seasonLabel },
+                { label: 'Wettbewerb', left: true, cell: (c) => [c.league ?? c.label, c.group].filter(Boolean).join(' ') },
+                { label: 'Spiele', cell: (c) => c.played || '–' },
+                { label: 'Rang', cell: (c) => (c.rank ? `${c.rank}.` : '–') },
+                { label: 'Punkte', cell: (c) => c.points ?? '–' },
+              ],
+              global.competitions,
+              {
+                onRow: async (c) => {
+                  if (c.key === state.key) return;
+                  document.getElementById('drawer')?.close();
+                  const select = document.getElementById('competition-select');
+                  await loadCompetition(c.key);
+                  if (select) select.value = c.key;
+                  render();
+                  showTeam(name);
+                },
+              },
+            ),
+          )
+        : null,
+
+      dos?.previousMatches?.length
+        ? card(
+            `Saison ${d.previousSeasonLabel} im Detail`,
+            p ? `${p.league} · ${p.group} · Rang ${p.rank} von ${p.teams}` : null,
+            dataTable(
+              [
+                { label: 'Datum', left: true, cell: (m) => formatDate(m.date, false) },
+                { label: 'Ort', left: true, cell: (m) => (m.side === 'home' ? 'Heim' : 'Auswärts') },
+                { label: 'Gegner', left: true, cell: (m) => m.opponent },
+                { label: 'Resultat', strong: true, cell: (m) => (m.played ? `${m.goalsFor}:${m.goalsAgainst}` : '–') },
+                { label: '', left: true, cell: (m) => (m.outcome ? formRun(m.outcome) : '') },
+              ],
+              dos.previousMatches,
+            ),
+          )
+        : null,
+
+      goalBox
+        ? card(
+            'Tore nach Spielminute',
+            `${d.meta.league ?? d.meta.label} ${d.meta.group ?? ''}`,
+            legend([
+              { name: 'erzielt', color: 'var(--series-1)' },
+              { name: 'kassiert', color: 'var(--series-2)' },
+            ]),
+            goalBox,
+          )
+        : null,
+
+      heat
+        ? card(
+            'Einsätze pro Runde',
+            'Startelf, Einwechslung, Bank',
+            legend([
+              { name: 'Startelf', color: 'var(--seq-450)' },
+              { name: 'eingewechselt', color: 'var(--seq-250)' },
+              { name: 'Bank ohne Einsatz', color: 'var(--surface-sunk)' },
+            ]),
+            h('div', { class: 'table-wrap' }, heat),
+          )
+        : null,
+
+      hasLeagueStats && squad.length
+        ? card(
+            'Kader',
+            `${t.playersUsed} eingesetzte Spieler`,
+            dataTable(
+              [
+                { label: 'Spieler', left: true, cell: (pl) => pl.name },
+                { label: 'Pos', left: true, cell: (pl) => h('span', { class: 'muted' }, pl.positionGroup) },
+                { label: 'Sp', cell: (pl) => pl.apps },
+                { label: 'Start', cell: (pl) => pl.starts },
+                { label: 'Ein', cell: (pl) => pl.subOn },
+                { label: 'Bank', cell: (pl) => pl.benchUnused },
+                { label: 'Tore', strong: true, cell: (pl) => pl.goals },
+                { label: 'G/GR/R', cell: (pl) => `${pl.yellow}/${pl.secondYellow}/${pl.red}` },
+              ],
+              squad,
+              { onRow: (pl) => showPlayer(pl.key) },
+            ),
+          )
+        : null,
     ),
   );
 }
@@ -1858,6 +1954,13 @@ async function boot() {
       applyHash();
       render();
     });
+
+    // Wettbewerbsuebergreifender Team-Index; ohne ihn laeuft alles weiter.
+    try {
+      state.teams = (await loadJson('data/teams.json')).teams;
+    } catch {
+      state.teams = null;
+    }
 
     await loadCompetition(index.competitions[0].key);
     applyHash();

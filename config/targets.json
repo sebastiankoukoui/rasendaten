@@ -38,7 +38,16 @@
       "season": 2026,
       "leagueId": 13029,
       "stageId": 24455,
-      "groupId": 67610
+      "groupId": 67610,
+      "scouting": {
+        "teamSchedules": false,
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
     },
     {
       "key": "ifv-cup-2026",

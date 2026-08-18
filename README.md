@@ -7,7 +7,7 @@ Aktuell erfasst (alle IFV):
 
 | Wettbewerb | Saison | Stand |
 |---|---|---|
-| 3. Liga Gruppe 1 | 2025/26 | 132 Spiele, komplett — Referenzdatensatz |
+| 3. Liga Gruppe 1 | 2025/26 | 132 Spiele, komplett — Referenzdatensatz · Vorsaison 2024/25 verlinkt |
 | Physio Sportiv IFV-Cup | 2025/26 | 66 Spiele, komplett bis zum Final |
 | Physio Sportiv IFV-Cup | 2026/27 | Runde 1 läuft, 20 von 24 Spielen |
 | 4. Liga Gruppe 2 | 2026/27 | 90 Spiele angesetzt, Start 22.08.2026 · **Gegner-Check** aktiv |
@@ -231,6 +231,22 @@ Verbandsaggregaten.
   sich die Spielzahl nicht sauber halbiert.
 - Rundenliste mit Datum, Resultat und Spielort
 - Cupsieger wird nur ausgewiesen, wenn die letzte Runde wirklich ein Endspiel ist
+
+**Teamprofil** — der Einstieg für alles Mannschaftsbezogene
+- Ein Klick auf eine Mannschaft (Tabelle, Spielplan, Gegner-Check, Teamliste)
+  öffnet dasselbe Profil, egal ob die Saison läuft, vorbei oder noch nicht
+  gestartet ist
+- Kernstück: **alle erfassten Partien über sämtliche Wettbewerbe und Saisons**,
+  nach Saison gruppiert und neueste zuerst — Meisterschaft, Cup und
+  Vorbereitung nebeneinander. Das Matchcenter kennt diese Sicht nicht, dort
+  hängt jede Partie an ihrem Wettbewerb.
+- Jede Zeile öffnet den Spielbericht, auch wenn die Partie zu einem anderen
+  Datensatz gehört — das Dashboard wechselt den Wettbewerb selbst
+- Dazu die Kennzahlen des gerade gewählten Wettbewerbs (sofern gespielt),
+  Kader, Einsatzraster und Torverteilung
+
+Grundlage ist `web/data/teams.json`, ein wettbewerbsübergreifender Index, der
+beim Aggregieren aus allen geladenen Datensätzen entsteht.
 
 **Gegner-Check** (`"scouting": true` im Target)
 - Je Mannschaft alle Partien der laufenden Saison über sämtliche Wettbewerbe,
