@@ -333,7 +333,51 @@ kopieren. Der Cron-Job erneuert danach nur die JSON-Dateien unter `web/data/`.
 
 ---
 
-## 6. Aufbau
+## 6. Wie die Daten gespeichert werden
+
+Nichts wird live abgerufen. Die Seite liest ausschliesslich fertige
+JSON-Dateien; zur Laufzeit gibt es keine Verbindung zum Matchcenter.
+
+```
+Matchcenter  ──crawl──▶  data/cache/*.html.gz   Roh-HTML, ~24 KB je Seite
+                         data/raw/<key>.json    geparst, eine Datei je Wettbewerb
+             ──build──▶  web/data/<key>.json    fertig gerechnet, was die Seite lädt
+                         web/data/teams.json    wettbewerbsübergreifender Index
+                         web/data/index.json    Liste der Wettbewerbe
+```
+
+Der Cache ist der Grund, warum `reparse` ohne Netzwerk auskommt: Nach einer
+Parser-Änderung wird das gespeicherte HTML neu ausgewertet, statt die Seiten
+erneut zu holen. Er ist in `.gitignore` — wiederherstellbar und nicht unsere
+Daten. `data/raw/` dagegen liegt im Repo, damit `build` überall läuft.
+
+Die Oberfläche lädt beim Start nur `index.json` und `teams.json`; die grosse
+Wettbewerbsdatei kommt erst beim Auswählen dazu. Ein voll erfasster Wettbewerb
+mit allen Spielberichten wiegt rund 16 KB je Spiel.
+
+### Aufwand für weitere Ligen
+
+`node src/cli.js survey` misst das vorab. Für den ganzen IFV der Saison
+2026/27 (2. bis 5. Liga, gemessen am 18.08.2026):
+
+| Liga | Gruppen | Teams | Spiele |
+|---|---|---|---|
+| 2. Liga | 1 | 14 | 182 |
+| 3. Liga | 3 | 36 | 396 |
+| 4. Liga | 6 | 60 | 540 |
+| 5. Liga | 7 | 67 | 576 |
+| **Total** | **17** | **177** | **1694** |
+
+- **Jetzt einlesen** (Saison hat eben begonnen): ~90 Seitenaufrufe, 3 Minuten.
+- **Über die ganze Saison**: ~1745 Seitenaufrufe, gut eine Stunde reine
+  Ladezeit, ~41 MB Cache, ~26 MB ausgelieferte JSON-Dateien. Das fällt aber
+  nie am Stück an, sondern verteilt sich über die Wochenenden.
+- **Pro Spielwochenende**: ~145 Seitenaufrufe, 5 Minuten — das ist die Zahl,
+  die im Dauerbetrieb zählt.
+- **Mit Gegner-Check für alle 177 Mannschaften**: einmalig ~350 Seiten für
+  Vereinsseiten und Team-Spielpläne, dazu die Berichte der Vorbereitungsspiele.
+
+## 7. Aufbau
 
 ```
 config/targets.json     welche Wettbewerbe eingelesen werden
@@ -359,7 +403,7 @@ der Cron-Job erneuert dann nur die JSON-Dateien unter `web/data/`.
 
 ---
 
-## 7. Bekannte Grenzen
+## 8. Bekannte Grenzen
 
 - **Wechsel werden nicht in jeder Partie erfasst.** In der 3. Liga sind es rund
   40 % der Spiele. Echte Einsatzminuten gibt es deshalb nur dort; überall sonst

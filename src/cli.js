@@ -65,6 +65,12 @@ switch (cmd) {
     buildAll();
     break;
   }
+  case 'survey': {
+    const { survey } = await import('./survey.js');
+    const ids = (value('leagues') ?? '13010,13029,13030,13040').split(',').map(Number);
+    await survey({ leagues: ids, season: value('season') ? Number(value('season')) : null });
+    break;
+  }
   case 'bundle': {
     const { bundle } = await import('./bundle.js');
     bundle();
@@ -90,6 +96,10 @@ switch (cmd) {
 
   node src/cli.js build
       Aggregiert data/raw/ -> web/data/ ohne Netzwerkzugriff.
+
+  node src/cli.js survey [--leagues 13010,13029] [--season 2027]
+      Bestandsaufnahme: Gruppen, Mannschaften, Spiele und der zu erwartende
+      Aufwand, bevor man Ligen in config/targets.json aufnimmt.
 
   node src/cli.js bundle
       Packt Dashboard und Daten in eine einzige HTML-Datei (dist/).
