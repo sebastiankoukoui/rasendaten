@@ -58,7 +58,7 @@
     }
   ],
   "sourceUrl": "https://matchcenter.ifv.ch/default.aspx?oid=7&lng=1&s=2027&ln=13030&ls=25896&sg=70463&a=mrr",
-  "collectedAt": "2026-08-18T00:20:27.595Z",
+  "collectedAt": "2026-08-18T02:12:35.517Z",
   "matches": [
     {
       "telegramId": 4328051,
@@ -1426,7 +1426,165 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 31474,
+          "label": "3. Liga 1",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31475,
+          "label": "4. Liga 2",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31476,
+          "label": "5. Liga 3",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31480,
+          "label": "Junioren B 1. Stärkeklasse Ba",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76012,
+          "label": "Juniorinnen FF-17 2. Stärkeklasse | C-FF17",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31481,
+          "label": "Junioren C 1. Stärkeklasse Ca",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 47054,
+          "label": "Junioren C 3. Stärkeklasse Cb",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31477,
+          "label": "Senioren 30+ Promotion | Sen. 30",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 67764,
+          "label": "Senioren 40+ Promotion | Sen. 40",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 78630,
+          "label": "Seniorinnen (7/7) | TAM Seniorinnen",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76491,
+          "label": "Junioren D-9 | D9-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31483,
+          "label": "Junioren D-9 | D9-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75868,
+          "label": "Juniorinnen FF-14 (9v9) | D9-FF14",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75856,
+          "label": "Junioren D-7 | D7-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75862,
+          "label": "Junioren D-7 | D7-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75863,
+          "label": "Junioren D-7 | D7-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75864,
+          "label": "Junioren D-7 | D7-d",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75870,
+          "label": "Juniorinnen FF-14 (7v7) | D7-FF14",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76014,
+          "label": "Juniorinnen E / FF-11 | E6-FF11",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 67156,
+          "label": "Junioren E | E6-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 71773,
+          "label": "Junioren E | E6-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 71774,
+          "label": "Junioren E | E6-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31487,
+          "label": "Junioren F | F4-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 69608,
+          "label": "Junioren F | F4-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 69609,
+          "label": "Junioren F | F4-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 78300,
+          "label": "Junioren G | G3-Minis",
+          "orgId": 7,
+          "clubPageId": 393
+        }
+      ]
     },
     {
       "rank": null,
@@ -1442,7 +1600,153 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": true
+      "lineBelow": true,
+      "_clubTeams": [
+        {
+          "teamId": 31298,
+          "label": "3. Liga I",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31303,
+          "label": "Youth League B | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31304,
+          "label": "Youth League C | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31300,
+          "label": "4. Liga a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31299,
+          "label": "5. Liga b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 51599,
+          "label": "Junioren B 3. Stärkeklasse | /Dietwil b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31301,
+          "label": "Senioren 30+ Meister | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31306,
+          "label": "Junioren D-9 | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 46974,
+          "label": "Junioren D-9 | /Dietwil b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 56797,
+          "label": "Junioren D-9 | /Dietwil c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77355,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77356,
+          "label": "Junioren D-7 b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77357,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 79197,
+          "label": "Juniorinnen FF-14 (7v7) | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 76690,
+          "label": "Juniorinnen E / FF-11 | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31309,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31310,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31311,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 42807,
+          "label": "Junioren F a1",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77516,
+          "label": "Junioren F a2",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 50892,
+          "label": "Junioren F b1",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 59586,
+          "label": "Junioren F b2",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 46557,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 74041,
+          "label": "Junioren G",
+          "orgId": 7,
+          "clubPageId": 378
+        }
+      ]
     },
     {
       "rank": null,
@@ -1458,7 +1762,243 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 31507,
+          "label": "Promotion League",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31508,
+          "label": "2. Liga interregional II",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 50338,
+          "label": "3. Liga 23",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31512,
+          "label": "Youth League A a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 44410,
+          "label": "Youth League B a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31515,
+          "label": "Youth League C a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 43495,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 59410,
+          "label": "Frauen 3. Liga",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78592,
+          "label": "5. Liga V",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31514,
+          "label": "Junioren B 1. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76365,
+          "label": "Juniorinnen FF-17 1. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31516,
+          "label": "Junioren C 2. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31517,
+          "label": "Junioren C 3. Stärkeklasse c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31509,
+          "label": "Senioren 30+ Promotion",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76416,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76417,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76418,
+          "label": "Junioren D-9 c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76419,
+          "label": "Junioren D-9 d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76420,
+          "label": "Junioren D-9 e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76366,
+          "label": "Juniorinnen FF-14 (9v9) a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76421,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76422,
+          "label": "Junioren D-7 b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76423,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76424,
+          "label": "Junioren D-7 d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76368,
+          "label": "Juniorinnen FF-14 (7v7) b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 79192,
+          "label": "Juniorinnen FF-14 (7v7) c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31526,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31527,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31528,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 42251,
+          "label": "Junioren E d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31529,
+          "label": "Junioren E e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 42814,
+          "label": "Junioren E f",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31531,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31532,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31533,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31534,
+          "label": "Junioren F d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 58585,
+          "label": "Junioren F e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78593,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78594,
+          "label": "Junioren G b",
+          "orgId": 7,
+          "clubPageId": 395
+        }
+      ]
     },
     {
       "rank": null,
@@ -1474,7 +2014,87 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 31576,
+          "label": "4. Liga I",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 56723,
+          "label": "Frauen 3. Liga | TEAM Menzingen / Aegeri",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31577,
+          "label": "5. Liga II",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31580,
+          "label": "Junioren B 2. Stärkeklasse | Futuro B",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31581,
+          "label": "Junioren C 2. Stärkeklasse | Futuro C",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76791,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76790,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76630,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 78451,
+          "label": "Junioren D-7 Dd",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31584,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 50567,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 50933,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 57676,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 399
+        }
+      ]
     },
     {
       "rank": null,
@@ -1490,7 +2110,63 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 52623,
+          "label": "U-15 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74860,
+          "label": "FE-14 (9/9) | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74859,
+          "label": "FE-13 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74858,
+          "label": "FE-12 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 43659,
+          "label": "4. Liga",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 73697,
+          "label": "Junioren D-9 D-9",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 43656,
+          "label": "Junioren E",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 44476,
+          "label": "Junioren F",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 71550,
+          "label": "Junioren G G",
+          "orgId": 7,
+          "clubPageId": 512938
+        }
+      ]
     },
     {
       "rank": null,
@@ -1506,7 +2182,135 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 79648,
+          "label": "Inklusionsliga | FC Bruschgol",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30628,
+          "label": "2. Liga",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30629,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 51023,
+          "label": "4. Liga IV",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30630,
+          "label": "5. Liga III",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 78591,
+          "label": "Junioren C 3. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30634,
+          "label": "Junioren C 3. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30631,
+          "label": "Senioren 30+ Regional",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30636,
+          "label": "Junioren D-9 | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30639,
+          "label": "Junioren D-9 | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30637,
+          "label": "Junioren D-9 | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74990,
+          "label": "Junioren D-7 | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74993,
+          "label": "Junioren D-7 | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74992,
+          "label": "Junioren D-7 | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30641,
+          "label": "Junioren E | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 42783,
+          "label": "Junioren E | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 56607,
+          "label": "Junioren E | Rigi",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30642,
+          "label": "Junioren E | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30644,
+          "label": "Junioren F | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 71125,
+          "label": "Junioren F | Talkessel",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 50882,
+          "label": "Junioren F | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        }
+      ]
     },
     {
       "rank": null,
@@ -1522,7 +2326,99 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 48678,
+          "label": "4. Liga I",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50307,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 78569,
+          "label": "5. Liga III",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48869,
+          "label": "Frauen 4. Liga | SG Zugerland Frauen",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 57664,
+          "label": "Junioren B 3. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48893,
+          "label": "Junioren C 2. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 51761,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48905,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48916,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 49429,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50568,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 51649,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50589,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48920,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 61824,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 614975
+        }
+      ]
     },
     {
       "rank": null,
@@ -1538,7 +2434,15 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": true
+      "lineBelow": true,
+      "_clubTeams": [
+        {
+          "teamId": 60791,
+          "label": "4. Liga",
+          "orgId": 7,
+          "clubPageId": 1088583
+        }
+      ]
     },
     {
       "rank": null,
@@ -1554,7 +2458,141 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 30660,
+          "label": "2. Liga interregional",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 50561,
+          "label": "Youth League B | Team Mythenregion B",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30662,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30663,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 58464,
+          "label": "5. Liga IV",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30667,
+          "label": "Junioren B 3. Stärkeklasse B",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 42787,
+          "label": "Junioren C 2. Stärkeklasse Ca",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30664,
+          "label": "Senioren 30+ Meister",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30665,
+          "label": "Senioren 40+ Meister | 40+ M",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 58575,
+          "label": "Senioren 40+ Promotion",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 55473,
+          "label": "Senioren 50+ II",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76547,
+          "label": "Junioren D-9 Da9",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76497,
+          "label": "Junioren D-7 Da7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76544,
+          "label": "Junioren D-7 Db7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76545,
+          "label": "Junioren D-7 Dc7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76546,
+          "label": "Junioren D-7 Dd7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30675,
+          "label": "Junioren E Ea",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30676,
+          "label": "Junioren E Eb",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 42185,
+          "label": "Junioren E Ec",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 51651,
+          "label": "Junioren F Fa1",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 51652,
+          "label": "Junioren F Fa2",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 69680,
+          "label": "Junioren F Fb1",
+          "orgId": 7,
+          "clubPageId": 332
+        }
+      ]
     },
     {
       "rank": null,
@@ -1570,7 +2608,147 @@
       "goalDiff": 0,
       "points": 0,
       "remark": null,
-      "lineBelow": false
+      "lineBelow": false,
+      "_clubTeams": [
+        {
+          "teamId": 31203,
+          "label": "2. Liga I",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 47195,
+          "label": "Youth League A",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31204,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42226,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31208,
+          "label": "Junioren B 3. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 73573,
+          "label": "Junioren C 2. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31205,
+          "label": "Senioren 30+ Promotion",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31206,
+          "label": "Senioren 40+ Meister | SG Perlen-Buchrain/Root",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 46204,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 78604,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75500,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75502,
+          "label": "Junioren D-7 d",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42784,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31210,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 56793,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42969,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 47197,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31213,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 55570,
+          "label": "Junioren F d",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71699,
+          "label": "Junioren F e",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71866,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71117,
+          "label": "Junioren G b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75501,
+          "label": "Junioren G c",
+          "orgId": 7,
+          "clubPageId": 370
+        }
+      ]
     }
   ],
   "rankingNote": "Rangliste mit Spalte 'Strafpunkte' gemäss Wettspielreglement Art.48 Für die Rangierung ist der Quotient aus der Anzahl Strafpunkte und der Anzahl tatsächlich auf dem Spielfeld ausgetragenen Meisterschaftsspiele abzustellen (Strafpunkte geteilt durch ausgetragene Spiele). Reglement betreffend Wertung der Strafpunkte in der Rangliste.",
@@ -1582,6 +2760,166 @@
       "orgId": 7,
       "teamId": 31475,
       "teamLabel": "4. Liga 2",
+      "clubNumber": 2601,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2601.gif",
+      "clubTeams": [
+        {
+          "teamId": 31474,
+          "label": "3. Liga 1",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31475,
+          "label": "4. Liga 2",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31476,
+          "label": "5. Liga 3",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31480,
+          "label": "Junioren B 1. Stärkeklasse Ba",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76012,
+          "label": "Juniorinnen FF-17 2. Stärkeklasse | C-FF17",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31481,
+          "label": "Junioren C 1. Stärkeklasse Ca",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 47054,
+          "label": "Junioren C 3. Stärkeklasse Cb",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31477,
+          "label": "Senioren 30+ Promotion | Sen. 30",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 67764,
+          "label": "Senioren 40+ Promotion | Sen. 40",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 78630,
+          "label": "Seniorinnen (7/7) | TAM Seniorinnen",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76491,
+          "label": "Junioren D-9 | D9-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31483,
+          "label": "Junioren D-9 | D9-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75868,
+          "label": "Juniorinnen FF-14 (9v9) | D9-FF14",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75856,
+          "label": "Junioren D-7 | D7-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75862,
+          "label": "Junioren D-7 | D7-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75863,
+          "label": "Junioren D-7 | D7-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75864,
+          "label": "Junioren D-7 | D7-d",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 75870,
+          "label": "Juniorinnen FF-14 (7v7) | D7-FF14",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 76014,
+          "label": "Juniorinnen E / FF-11 | E6-FF11",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 67156,
+          "label": "Junioren E | E6-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 71773,
+          "label": "Junioren E | E6-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 71774,
+          "label": "Junioren E | E6-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 31487,
+          "label": "Junioren F | F4-a",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 69608,
+          "label": "Junioren F | F4-b",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 69609,
+          "label": "Junioren F | F4-c",
+          "orgId": 7,
+          "clubPageId": 393
+        },
+        {
+          "teamId": 78300,
+          "label": "Junioren G | G3-Minis",
+          "orgId": 7,
+          "clubPageId": 393
+        }
+      ],
       "matches": [
         {
           "telegramId": 4307311,
@@ -2119,6 +3457,154 @@
       "orgId": 7,
       "teamId": 31300,
       "teamLabel": "4. Liga a",
+      "clubNumber": 2540,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2540.gif",
+      "clubTeams": [
+        {
+          "teamId": 31298,
+          "label": "3. Liga I",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31303,
+          "label": "Youth League B | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31304,
+          "label": "Youth League C | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31300,
+          "label": "4. Liga a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31299,
+          "label": "5. Liga b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 51599,
+          "label": "Junioren B 3. Stärkeklasse | /Dietwil b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31301,
+          "label": "Senioren 30+ Meister | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31306,
+          "label": "Junioren D-9 | /Dietwil a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 46974,
+          "label": "Junioren D-9 | /Dietwil b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 56797,
+          "label": "Junioren D-9 | /Dietwil c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77355,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77356,
+          "label": "Junioren D-7 b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77357,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 79197,
+          "label": "Juniorinnen FF-14 (7v7) | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 76690,
+          "label": "Juniorinnen E / FF-11 | /Dietwil",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31309,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31310,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 31311,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 42807,
+          "label": "Junioren F a1",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 77516,
+          "label": "Junioren F a2",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 50892,
+          "label": "Junioren F b1",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 59586,
+          "label": "Junioren F b2",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 46557,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 378
+        },
+        {
+          "teamId": 74041,
+          "label": "Junioren G",
+          "orgId": 7,
+          "clubPageId": 378
+        }
+      ],
       "matches": [
         {
           "telegramId": 4342971,
@@ -2632,6 +4118,244 @@
       "orgId": 7,
       "teamId": 43495,
       "teamLabel": "4. Liga III",
+      "clubNumber": 2607,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2607.gif",
+      "clubTeams": [
+        {
+          "teamId": 31507,
+          "label": "Promotion League",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31508,
+          "label": "2. Liga interregional II",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 50338,
+          "label": "3. Liga 23",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31512,
+          "label": "Youth League A a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 44410,
+          "label": "Youth League B a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31515,
+          "label": "Youth League C a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 43495,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 59410,
+          "label": "Frauen 3. Liga",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78592,
+          "label": "5. Liga V",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31514,
+          "label": "Junioren B 1. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76365,
+          "label": "Juniorinnen FF-17 1. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31516,
+          "label": "Junioren C 2. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31517,
+          "label": "Junioren C 3. Stärkeklasse c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31509,
+          "label": "Senioren 30+ Promotion",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76416,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76417,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76418,
+          "label": "Junioren D-9 c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76419,
+          "label": "Junioren D-9 d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76420,
+          "label": "Junioren D-9 e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76366,
+          "label": "Juniorinnen FF-14 (9v9) a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76421,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76422,
+          "label": "Junioren D-7 b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76423,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76424,
+          "label": "Junioren D-7 d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 76368,
+          "label": "Juniorinnen FF-14 (7v7) b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 79192,
+          "label": "Juniorinnen FF-14 (7v7) c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31526,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31527,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31528,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 42251,
+          "label": "Junioren E d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31529,
+          "label": "Junioren E e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 42814,
+          "label": "Junioren E f",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31531,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31532,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31533,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 31534,
+          "label": "Junioren F d",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 58585,
+          "label": "Junioren F e",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78593,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 395
+        },
+        {
+          "teamId": 78594,
+          "label": "Junioren G b",
+          "orgId": 7,
+          "clubPageId": 395
+        }
+      ],
       "matches": [
         {
           "telegramId": 4307622,
@@ -3193,6 +4917,88 @@
       "orgId": 7,
       "teamId": 31576,
       "teamLabel": "4. Liga I",
+      "clubNumber": 2649,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2649.gif",
+      "clubTeams": [
+        {
+          "teamId": 31576,
+          "label": "4. Liga I",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 56723,
+          "label": "Frauen 3. Liga | TEAM Menzingen / Aegeri",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31577,
+          "label": "5. Liga II",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31580,
+          "label": "Junioren B 2. Stärkeklasse | Futuro B",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31581,
+          "label": "Junioren C 2. Stärkeklasse | Futuro C",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76791,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76790,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 76630,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 78451,
+          "label": "Junioren D-7 Dd",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 31584,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 50567,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 50933,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 399
+        },
+        {
+          "teamId": 57676,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 399
+        }
+      ],
       "matches": [
         {
           "telegramId": null,
@@ -3754,6 +5560,64 @@
       "orgId": 7,
       "teamId": 43659,
       "teamLabel": "4. Liga",
+      "clubNumber": 2646,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2646.gif",
+      "clubTeams": [
+        {
+          "teamId": 52623,
+          "label": "U-15 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74860,
+          "label": "FE-14 (9/9) | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74859,
+          "label": "FE-13 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 74858,
+          "label": "FE-12 | Team Zugerland",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 43659,
+          "label": "4. Liga",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 73697,
+          "label": "Junioren D-9 D-9",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 43656,
+          "label": "Junioren E",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 44476,
+          "label": "Junioren F",
+          "orgId": 7,
+          "clubPageId": 512938
+        },
+        {
+          "teamId": 71550,
+          "label": "Junioren G G",
+          "orgId": 7,
+          "clubPageId": 512938
+        }
+      ],
       "matches": [
         {
           "telegramId": 4307632,
@@ -4315,6 +6179,136 @@
       "orgId": 7,
       "teamId": 51023,
       "teamLabel": "4. Liga IV",
+      "clubNumber": 2205,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2205.gif",
+      "clubTeams": [
+        {
+          "teamId": 79648,
+          "label": "Inklusionsliga | FC Bruschgol",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30628,
+          "label": "2. Liga",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30629,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 51023,
+          "label": "4. Liga IV",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30630,
+          "label": "5. Liga III",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 78591,
+          "label": "Junioren C 3. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30634,
+          "label": "Junioren C 3. Stärkeklasse b",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30631,
+          "label": "Senioren 30+ Regional",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30636,
+          "label": "Junioren D-9 | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30639,
+          "label": "Junioren D-9 | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30637,
+          "label": "Junioren D-9 | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74990,
+          "label": "Junioren D-7 | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74993,
+          "label": "Junioren D-7 | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 74992,
+          "label": "Junioren D-7 | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30641,
+          "label": "Junioren E | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 42783,
+          "label": "Junioren E | Mythen",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 56607,
+          "label": "Junioren E | Rigi",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30642,
+          "label": "Junioren E | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 30644,
+          "label": "Junioren F | Fronalp",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 71125,
+          "label": "Junioren F | Talkessel",
+          "orgId": 7,
+          "clubPageId": 330
+        },
+        {
+          "teamId": 50882,
+          "label": "Junioren F | Urmiberg",
+          "orgId": 7,
+          "clubPageId": 330
+        }
+      ],
       "matches": [
         {
           "telegramId": 4403272,
@@ -4804,6 +6798,100 @@
       "orgId": 7,
       "teamId": 50307,
       "teamLabel": "4. Liga II",
+      "clubNumber": 2652,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2652.gif",
+      "clubTeams": [
+        {
+          "teamId": 48678,
+          "label": "4. Liga I",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50307,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 78569,
+          "label": "5. Liga III",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48869,
+          "label": "Frauen 4. Liga | SG Zugerland Frauen",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 57664,
+          "label": "Junioren B 3. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48893,
+          "label": "Junioren C 2. Stärkeklasse a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 51761,
+          "label": "Junioren D-9 a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48905,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48916,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 49429,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50568,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 51649,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 50589,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 48920,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 614975
+        },
+        {
+          "teamId": 61824,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 614975
+        }
+      ],
       "matches": [
         {
           "telegramId": 4306278,
@@ -5365,6 +7453,16 @@
       "orgId": 7,
       "teamId": 60791,
       "teamLabel": "4. Liga",
+      "clubNumber": 2556,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2556.gif",
+      "clubTeams": [
+        {
+          "teamId": 60791,
+          "label": "4. Liga",
+          "orgId": 7,
+          "clubPageId": 1088583
+        }
+      ],
       "matches": [
         {
           "telegramId": 4307717,
@@ -5878,6 +7976,142 @@
       "orgId": 7,
       "teamId": 30663,
       "teamLabel": "4. Liga III",
+      "clubNumber": 2217,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2217.gif",
+      "clubTeams": [
+        {
+          "teamId": 30660,
+          "label": "2. Liga interregional",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 50561,
+          "label": "Youth League B | Team Mythenregion B",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30662,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30663,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 58464,
+          "label": "5. Liga IV",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30667,
+          "label": "Junioren B 3. Stärkeklasse B",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 42787,
+          "label": "Junioren C 2. Stärkeklasse Ca",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30664,
+          "label": "Senioren 30+ Meister",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30665,
+          "label": "Senioren 40+ Meister | 40+ M",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 58575,
+          "label": "Senioren 40+ Promotion",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 55473,
+          "label": "Senioren 50+ II",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76547,
+          "label": "Junioren D-9 Da9",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76497,
+          "label": "Junioren D-7 Da7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76544,
+          "label": "Junioren D-7 Db7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76545,
+          "label": "Junioren D-7 Dc7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 76546,
+          "label": "Junioren D-7 Dd7",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30675,
+          "label": "Junioren E Ea",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 30676,
+          "label": "Junioren E Eb",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 42185,
+          "label": "Junioren E Ec",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 51651,
+          "label": "Junioren F Fa1",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 51652,
+          "label": "Junioren F Fa2",
+          "orgId": 7,
+          "clubPageId": 332
+        },
+        {
+          "teamId": 69680,
+          "label": "Junioren F Fb1",
+          "orgId": 7,
+          "clubPageId": 332
+        }
+      ],
       "matches": [
         {
           "telegramId": 4327365,
@@ -6415,6 +8649,148 @@
       "orgId": 7,
       "teamId": 31204,
       "teamLabel": "4. Liga II",
+      "clubNumber": 2530,
+      "clubLogo": "https://blob.football.ch/logos/Verein/2530.gif",
+      "clubTeams": [
+        {
+          "teamId": 31203,
+          "label": "2. Liga I",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 47195,
+          "label": "Youth League A",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31204,
+          "label": "4. Liga II",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42226,
+          "label": "4. Liga III",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31208,
+          "label": "Junioren B 3. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 73573,
+          "label": "Junioren C 2. Stärkeklasse",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31205,
+          "label": "Senioren 30+ Promotion",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31206,
+          "label": "Senioren 40+ Meister | SG Perlen-Buchrain/Root",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 46204,
+          "label": "Junioren D-9 b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 78604,
+          "label": "Junioren D-7 a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75500,
+          "label": "Junioren D-7 c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75502,
+          "label": "Junioren D-7 d",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42784,
+          "label": "Junioren E a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31210,
+          "label": "Junioren E b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 56793,
+          "label": "Junioren E c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 42969,
+          "label": "Junioren F a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 47197,
+          "label": "Junioren F b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 31213,
+          "label": "Junioren F c",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 55570,
+          "label": "Junioren F d",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71699,
+          "label": "Junioren F e",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71866,
+          "label": "Junioren G a",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 71117,
+          "label": "Junioren G b",
+          "orgId": 7,
+          "clubPageId": 370
+        },
+        {
+          "teamId": 75501,
+          "label": "Junioren G c",
+          "orgId": 7,
+          "clubPageId": 370
+        }
+      ],
       "matches": [
         {
           "telegramId": null,

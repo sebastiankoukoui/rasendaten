@@ -47,9 +47,7 @@ export function bundle({ log = console.log } = {}) {
   fs.writeFileSync(out, html, 'utf8');
 
   const mb = (fs.statSync(out).size / 1048576).toFixed(1);
-  log(
-    `Einzeldatei gebaut: dist/rasendaten.html (${mb} MB, ` +
-      `${Object.keys(data).length - 1} Wettbewerbe)`,
-  );
+  const wettbewerbe = (data['data/index.json']?.competitions ?? []).length;
+  log(`Einzeldatei gebaut: dist/rasendaten.html (${mb} MB, ${wettbewerbe} Wettbewerbe)`);
   return out;
 }

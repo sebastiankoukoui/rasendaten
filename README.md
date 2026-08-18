@@ -3,14 +3,19 @@
 **Live: https://sebastiankoukoui.github.io/rasendaten/**
 
 Prototyp eines Statistik-Dashboards für Ligen der SFV-Regionalverbände.
-Aktuell erfasst (alle IFV):
+Erfasst ist der komplette Aktivbereich des IFV der laufenden Saison — 2. bis
+5. Liga, 17 Gruppen, 177 Mannschaften — dazu zwei abgeschlossene Wettbewerbe
+als Referenz:
 
 | Wettbewerb | Saison | Stand |
 |---|---|---|
 | 3. Liga Gruppe 1 | 2025/26 | 132 Spiele, komplett — Referenzdatensatz · Vorsaison 2024/25 verlinkt |
 | Physio Sportiv IFV-Cup | 2025/26 | 66 Spiele, komplett bis zum Final |
 | Physio Sportiv IFV-Cup | 2026/27 | Runde 1 läuft, 20 von 24 Spielen |
-| 4. Liga Gruppe 2 | 2026/27 | 90 Spiele angesetzt, Start 22.08.2026 · **Gegner-Check** aktiv |
+| 2. Liga | 2026/27 | 1 Gruppe, 14 Teams · Gegner-Check |
+| 3. Liga | 2026/27 | 3 Gruppen, 36 Teams · Gegner-Check |
+| 4. Liga | 2026/27 | 6 Gruppen, 60 Teams · Gegner-Check |
+| 5. Liga | 2026/27 | 7 Gruppen, 67 Teams · Gegner-Check |
 
 Die berechnete Tabelle der 3. Liga stimmt Platz für Platz, Punkt für Punkt und
 Tor für Tor mit der offiziellen Rangliste des Verbands überein (siehe
@@ -258,6 +263,16 @@ Verbandsaggregaten.
 Grundlage ist `web/data/teams.json`, ein wettbewerbsübergreifender Index, der
 beim Aggregieren aus allen geladenen Datensätzen entsteht.
 
+**Verzeichnisse über alle Wettbewerbe** — der Teil, den das Matchcenter gar
+nicht kennt
+- **Suche** im Kopf der Seite über Vereine, Mannschaften und Spieler; eine
+  eigene Suchseite mit Filtern nach Position, Wettbewerb, Einsätzen und Toren
+- **Vereinsprofil**: alle Mannschaften eines Vereins nach Rubrik geordnet
+  (Aktive, Frauen, Junioren, Juniorinnen, Senioren) — auch die, zu denen noch
+  keine Daten erfasst sind. So ist sichtbar, was ein Verein alles stellt.
+- Grundlage sind `web/data/clubs.json` und `web/data/players.json`, die beim
+  Aggregieren entstehen und erst beim ersten Suchen geladen werden
+
 **Gegner-Check** (`"scouting": true` im Target)
 - Je Mannschaft alle Partien der laufenden Saison über sämtliche Wettbewerbe,
   mit Wettbewerbs-Kennzeichnung und Liga-Stufe des Gegners
@@ -351,9 +366,11 @@ Parser-Änderung wird das gespeicherte HTML neu ausgewertet, statt die Seiten
 erneut zu holen. Er ist in `.gitignore` — wiederherstellbar und nicht unsere
 Daten. `data/raw/` dagegen liegt im Repo, damit `build` überall läuft.
 
-Die Oberfläche lädt beim Start nur `index.json` und `teams.json`; die grosse
-Wettbewerbsdatei kommt erst beim Auswählen dazu. Ein voll erfasster Wettbewerb
-mit allen Spielberichten wiegt rund 16 KB je Spiel.
+Die Oberfläche lädt beim Start `index.json` und `teams.json` (1,3 MB bei
+20 Wettbewerben); die gewählte Wettbewerbsdatei kommt dazu, die Verzeichnisse
+`clubs.json` und `players.json` erst beim ersten Suchen. Ein voll erfasster
+Wettbewerb mit allen Spielberichten wiegt rund 16 KB je Spiel; die 20
+Datensätze zusammen belegen aktuell 14 MB.
 
 ### Aufwand für weitere Ligen
 
@@ -413,7 +430,13 @@ der Cron-Job erneuert dann nur die JSON-Dateien unter `web/data/`.
   (im Referenzdatensatz 12–20 Punkte je Team mehr als die reine Kartenbilanz).
 - **Rundenzuordnung** wird aus der Spielnummernfolge rekonstruiert; der
   Verband liefert keine explizite Rundennummer im Spielplan.
-- **Keine Vereinswappen** — auch die Bilddomain ist gesperrt. Ersatzweise
-  Monogramme.
+- **Keine Vereinswappen** — auch die Bilddomain (`blob.football.ch`) antwortet
+  Nicht-Browsern mit 403. Die Wappen-URL steht in den Daten (`clubNumber`
+  entspricht dem Dateinamen), sodass sie sich nachrüsten lassen, sobald der
+  Bezug geklärt ist. Bis dahin Monogramme.
+- **Junioren, Senioren und Frauen sind noch nicht erfasst.** Die
+  Vereinsprofile zeigen diese Mannschaften bereits an, weil sie auf der
+  Vereinsseite stehen — Daten dazu gibt es aber erst, wenn die entsprechenden
+  Ligen in `config/targets.json` aufgenommen werden.
 - **Keine xG-Daten.** Im Amateurbereich existieren keine Schuss- oder
   Positionsdaten; „erwartete Punkte" beruhen deshalb auf der Torbilanz.

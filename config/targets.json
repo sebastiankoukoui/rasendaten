@@ -6,6 +6,96 @@
   "throttleMs": 1500,
   "targets": [
     {
+      "key": "ifv-2liga-g1-2027",
+      "type": "league",
+      "label": "2. Liga - Gruppe 1",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13010,
+      "stageId": 25894,
+      "groupId": 70458,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-3liga-g1-2027",
+      "type": "league",
+      "label": "3. Liga - Gruppe 1",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13029,
+      "stageId": 25895,
+      "groupId": 70459,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-3liga-g2-2027",
+      "type": "league",
+      "label": "3. Liga - Gruppe 2",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13029,
+      "stageId": 25895,
+      "groupId": 70460,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-3liga-g3-2027",
+      "type": "league",
+      "label": "3. Liga - Gruppe 3",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13029,
+      "stageId": 25895,
+      "groupId": 70461,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-4liga-g1-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 1",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70462,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
       "key": "ifv-4liga-g2-2027",
       "type": "league",
       "label": "4. Liga - Gruppe 2",
@@ -16,6 +106,205 @@
       "groupId": 70463,
       "scouting": {
         "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-4liga-g3-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 3",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70464,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-4liga-g4-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 4",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70465,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-4liga-g5-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 5",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70466,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-4liga-g6-2027",
+      "type": "league",
+      "label": "4. Liga - Gruppe 6",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13030,
+      "stageId": 25896,
+      "groupId": 70467,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g1-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 1",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70468,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g2-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 2",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70469,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g3-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 3",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70470,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g4-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 4",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70471,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g5-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 5",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70472,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g6-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 6",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70473,
+      "scouting": {
+        "historyLeagues": [
+          13010,
+          13029,
+          13030,
+          13040
+        ]
+      }
+    },
+    {
+      "key": "ifv-5liga-g7-2027",
+      "type": "league",
+      "label": "5. Liga - Gruppe 7",
+      "association": "IFV",
+      "season": 2027,
+      "leagueId": 13040,
+      "stageId": 25897,
+      "groupId": 70474,
+      "scouting": {
+        "historyLeagues": [
+          13010,
           13029,
           13030,
           13040

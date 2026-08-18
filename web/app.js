@@ -52,6 +52,10 @@ const teamCell = (name) =>
 const state = {
   index: null,
   teams: null,
+  clubs: null,
+  players: null,
+  registriesLoaded: false,
+  searchPage: { q: '', pos: 'all', comp: 'all', minApps: 1, minGoals: 0, sort: 'goals', dir: -1 },
   key: null,
   data: null,
   view: 'uebersicht',
@@ -91,10 +95,10 @@ const isCup = () => state.data?.meta.type === 'cup';
 const notStarted = () => !isCup() && state.data?.league.matchesPlayed === 0;
 
 function tabs() {
-  const base = isCup() ? TABS_CUP : notStarted() ? TABS_VORSCHAU : TABS_LEAGUE;
-  if (!state.data?.dossiers?.length) return base;
+  let base = isCup() ? TABS_CUP : notStarted() ? TABS_VORSCHAU : TABS_LEAGUE;
   // Gegner-Check direkt hinter die Uebersicht.
-  return [base[0], ['gegner', 'Gegner-Check'], ...base.slice(1)];
+  if (state.data?.dossiers?.length) base = [base[0], ['gegner', 'Gegner-Check'], ...base.slice(1)];
+  return [...base, ['suche', 'Suche']];
 }
 
 const teamByKey = (key) => state.data.teams.find((t) => t.key === key);
@@ -422,6 +426,467 @@ function viewVorschau() {
         ],
         [...d.teams].sort((a, b) => a.name.localeCompare(b.name)),
         { onRow: (t) => showTeam(t.key) },
+      ),
+    ),
+  );
+}
+
+/* --------------------------------------------------------------- Suche --- */
+
+/**
+ * Verzeichnisse werden erst beim ersten Suchen geladen - sie sind gross und
+ * für den Normalfall (ein Wettbewerb anschauen) nicht nötig.
+ */
+async function ensureRegistries() {
+  if (state.registriesLoaded) return;
+  state.registriesLoaded = true;
+  try {
+    const [clubs, players] = await Promise.all([
+      loadJson('data/clubs.json').catch(() => ({ clubs: {} })),
+      loadJson('data/players.json').catch(() => ({ players: [] })),
+    ]);
+    state.clubs = clubs.clubs ?? {};
+    state.players = players.players ?? [];
+  } catch {
+    state.clubs = {};
+    state.players = [];
+  }
+}
+
+const foldName = (s) =>
+  String(s ?? '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+
+/** Treffer über Vereine, Mannschaften und Spieler. */
+function searchAll(query, limit = 6) {
+  const q = foldName(query);
+  if (q.length < 2) return null;
+
+  const clubs = Object.values(state.clubs ?? {})
+    .filter((c) => foldName(c.name).includes(q))
+    .sort((a, b) => b.teams.length - a.teams.length)
+    .slice(0, limit);
+
+  const teams = Object.values(state.teams ?? {})
+    .filter((t) => foldName(t.name).includes(q))
+    .sort((a, b) => b.matches.length - a.matches.length)
+    .slice(0, limit);
+
+  const players = (state.players ?? [])
+    .filter((p) => foldName(p.name).includes(q))
+    .slice(0, limit * 2);
+
+  return { clubs, teams, players };
+}
+
+function searchHit(label, meta, onClick) {
+  return h('button', { class: 'search__hit', type: 'button', onclick: onClick }, label, meta ? h('small', {}, meta) : null);
+}
+
+function renderSearchPanel(res, query) {
+  const box = document.getElementById('search');
+  box.querySelector('.search__panel')?.remove();
+  if (!res) return;
+
+  const groups = [];
+  if (res.clubs.length) {
+    groups.push(
+      h(
+        'div',
+        { class: 'search__group' },
+        h('div', { class: 'search__label' }, 'Vereine'),
+        res.clubs.map((c) =>
+          searchHit(c.name, `${c.teams.length} Mannschaften`, () => {
+            closeSearch();
+            showClub(c.key);
+          }),
+        ),
+      ),
+    );
+  }
+  if (res.teams.length) {
+    groups.push(
+      h(
+        'div',
+        { class: 'search__group' },
+        h('div', { class: 'search__label' }, 'Mannschaften'),
+        res.teams.map((t) =>
+          searchHit(t.name, `${t.matches.filter((m) => m.played).length} Partien`, () => {
+            closeSearch();
+            openTeamAnywhere(t);
+          }),
+        ),
+      ),
+    );
+  }
+  if (res.players.length) {
+    groups.push(
+      h(
+        'div',
+        { class: 'search__group' },
+        h('div', { class: 'search__label' }, 'Spieler'),
+        res.players.map((p) =>
+          searchHit(
+            p.name,
+            `${p.goals} Tore · ${p.apps} Einsätze · ${p.teams[0]?.team ?? ''}`,
+            () => {
+              closeSearch();
+              openPlayerAnywhere(p);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  groups.push(
+    h(
+      'div',
+      { class: 'search__group' },
+      searchHit('Alle Treffer mit Filtern öffnen', 'Suche', () => {
+        state.searchPage.q = query;
+        closeSearch();
+        location.hash = '#/suche';
+      }),
+    ),
+  );
+
+  box.append(
+    h(
+      'div',
+      { class: 'search__panel' },
+      groups.length ? groups : h('div', { class: 'search__empty' }, `Nichts gefunden zu „${query}“.`),
+    ),
+  );
+}
+
+function closeSearch() {
+  document.querySelector('#search .search__panel')?.remove();
+  const input = document.getElementById('search-input');
+  if (input) input.value = '';
+}
+
+/** Mannschaft öffnen, egal in welchem Wettbewerb sie erfasst ist. */
+async function openTeamAnywhere(entry) {
+  const target = entry.competitions?.[0];
+  if (target && target.key !== state.key) {
+    await loadCompetition(target.key);
+    const select = document.getElementById('competition-select');
+    if (select) select.value = target.key;
+    render();
+  }
+  showTeam(entry.name);
+}
+
+async function openPlayerAnywhere(p) {
+  const ref = p.teams[0];
+  if (!ref) return;
+  if (ref.competitionKey !== state.key) {
+    await loadCompetition(ref.competitionKey);
+    const select = document.getElementById('competition-select');
+    if (select) select.value = ref.competitionKey;
+    render();
+  }
+  showPlayer(ref.playerKey);
+}
+
+function initSearch() {
+  const input = document.getElementById('search-input');
+  if (!input) return;
+  let timer = null;
+
+  const run = async () => {
+    const q = input.value.trim();
+    if (q.length < 2) {
+      document.querySelector('#search .search__panel')?.remove();
+      return;
+    }
+    await ensureRegistries();
+    renderSearchPanel(searchAll(q), q);
+  };
+
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(run, 140);
+  });
+  input.addEventListener('focus', () => {
+    if (input.value.trim().length >= 2) run();
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'ArrowDown') {
+      document.querySelector('#search .search__hit')?.focus();
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('search')?.contains(e.target)) {
+      document.querySelector('#search .search__panel')?.remove();
+    }
+  });
+}
+
+/* -------------------------------------------------------------- Verein --- */
+
+/**
+ * Vereinsprofil: alle Mannschaften eines Vereins, nach Rubrik sortiert.
+ * Mannschaften mit erfassten Daten sind anklickbar, die übrigen zeigen, was
+ * der Verein sonst noch stellt.
+ */
+function showClub(key) {
+  const club = state.clubs?.[key];
+  if (!club) return;
+
+  const withData = new Map();
+  for (const e of club.entries) {
+    if (!withData.has(e.team)) withData.set(e.team, []);
+    withData.get(e.team).push(e);
+  }
+
+  const byCategory = new Map();
+  for (const t of club.teams) {
+    if (!byCategory.has(t.category)) byCategory.set(t.category, []);
+    byCategory.get(t.category).push(t);
+  }
+
+  // Mannschaften mit Daten oben, mit Rang und Wettbewerb.
+  const dataRows = [...withData.entries()].map(([team, entries]) => ({
+    team,
+    entries: entries.sort((a, b) => String(b.competition.seasonLabel).localeCompare(String(a.competition.seasonLabel))),
+  }));
+
+  openDrawer(
+    club.name,
+    `${club.teams.length} Mannschaften${club.clubNumber ? ` · Vereinsnr. ${club.clubNumber}` : ''}`,
+    h(
+      'div',
+      { class: 'stack' },
+      dataRows.length
+        ? card(
+            'Erfasste Mannschaften',
+            'Klick öffnet das Teamprofil',
+            dataTable(
+              [
+                { label: 'Mannschaft', left: true, cell: (r) => teamCell(r.team) },
+                {
+                  label: 'Wettbewerb',
+                  left: true,
+                  cell: (r) =>
+                    h(
+                      'span',
+                      {},
+                      r.entries
+                        .map((e) => [e.competition.league ?? e.competition.label, e.competition.group].filter(Boolean).join(' '))
+                        .filter((v, i, a) => a.indexOf(v) === i)
+                        .join(' · '),
+                    ),
+                },
+                { label: 'Saison', cell: (r) => r.entries[0].competition.seasonLabel },
+                { label: 'Rang', cell: (r) => (r.entries[0].rank ? `${r.entries[0].rank}.` : '–') },
+              ],
+              dataRows,
+              { onRow: (r) => showTeam(r.team) },
+            ),
+          )
+        : null,
+      card(
+        'Alle Mannschaften des Vereins',
+        'Laut Vereinsseite des Verbands – erfasst ist bisher nur ein Teil',
+        h(
+          'div',
+          {},
+          [...byCategory.entries()].map(([cat, list]) =>
+            h(
+              'div',
+              {},
+              h('div', { class: 'club-teams__cat' }, cat),
+              h(
+                'div',
+                { class: 'club-teams' },
+                list.map((t) => {
+                  const live = [...withData.keys()].find((name) => club.entries.some((e) => e.team === name && e.teamId === t.teamId));
+                  return h(
+                    'div',
+                    {
+                      class: `club-team${live ? ' club-team--live' : ''}`,
+                      onclick: live ? () => showTeam(live) : null,
+                    },
+                    t.label,
+                    live ? h('small', {}, 'erfasst') : null,
+                  );
+                }),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/* ------------------------------------------------------- Spielersuche --- */
+
+const POSITIONS = ['Tor', 'Abwehr', 'Mittelfeld', 'Angriff'];
+
+/**
+ * Volltextsuche über alle Wettbewerbe hinweg. Der Verband bietet keine
+ * Spielersuche an - hier ist sie der schnellste Weg zu einer Person, egal in
+ * welcher Liga sie spielt.
+ */
+function viewSuche() {
+  const f = state.searchPage;
+
+  if (!state.registriesLoaded) {
+    ensureRegistries().then(() => render());
+    return h('div', { class: 'loading' }, 'Verzeichnisse werden geladen …');
+  }
+
+  const q = foldName(f.q);
+  const all = state.players ?? [];
+  let rows = all.filter(
+    (p) =>
+      (!q || foldName(p.name).includes(q)) &&
+      (f.pos === 'all' || p.position === f.pos) &&
+      p.apps >= f.minApps &&
+      p.goals >= f.minGoals &&
+      (f.comp === 'all' || p.teams.some((t) => t.competitionKey === f.comp)),
+  );
+  rows = rows.sort((a, b) => ((a[f.sort] ?? 0) - (b[f.sort] ?? 0)) * f.dir || b.apps - a.apps).slice(0, 400);
+
+  const clubs = q.length >= 2
+    ? Object.values(state.clubs ?? {}).filter((c) => foldName(c.name).includes(q)).slice(0, 12)
+    : [];
+
+  const onSort = (key) => {
+    if (f.sort === key) f.dir *= -1;
+    else {
+      f.sort = key;
+      f.dir = -1;
+    }
+    render();
+  };
+
+  const numberField = (value, onInput) =>
+    h('input', {
+      type: 'number',
+      min: 0,
+      value,
+      style:
+        'width:62px;font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink)',
+      oninput: (e) => onInput(Number(e.target.value) || 0),
+    });
+
+  return h(
+    'div',
+    { class: 'stack' },
+    pageHead(
+      'Über alle Wettbewerbe',
+      'Suche',
+      `${fmt.format(all.length)} Spielerinnen und Spieler, ${Object.keys(state.clubs ?? {}).length} Vereine, ` +
+        `${Object.keys(state.teams ?? {}).length} Mannschaften. Der Verband hat für all das keine Suche.`,
+    ),
+    h(
+      'div',
+      { class: 'filters' },
+      h('input', {
+        type: 'search',
+        placeholder: 'Name suchen …',
+        value: f.q,
+        oninput: (e) => {
+          f.q = e.target.value;
+          render({ keepFocus: 'search' });
+        },
+      }),
+      h(
+        'div',
+        { class: 'chips' },
+        [['all', 'Alle Positionen'], ...POSITIONS.map((p) => [p, p])].map(([k, label]) =>
+          h(
+            'button',
+            {
+              class: 'chip',
+              'aria-pressed': String(f.pos === k),
+              onclick: () => {
+                f.pos = k;
+                render();
+              },
+            },
+            label,
+          ),
+        ),
+      ),
+      h(
+        'select',
+        {
+          'aria-label': 'Wettbewerb filtern',
+          onchange: (e) => {
+            f.comp = e.target.value;
+            render();
+          },
+        },
+        h('option', { value: 'all', selected: f.comp === 'all' }, 'Alle Wettbewerbe'),
+        (state.index?.competitions ?? []).map((c) =>
+          h(
+            'option',
+            { value: c.key, selected: f.comp === c.key },
+            `${c.league ?? c.label} ${c.group ?? ''} · ${c.seasonLabel}`,
+          ),
+        ),
+      ),
+      h('label', { class: 'chips', style: 'gap:6px;color:var(--ink-3);font-size:12.5px' }, 'ab', numberField(f.minApps, (v) => {
+        f.minApps = v;
+        render();
+      }), 'Einsätzen'),
+      h('label', { class: 'chips', style: 'gap:6px;color:var(--ink-3);font-size:12.5px' }, 'ab', numberField(f.minGoals, (v) => {
+        f.minGoals = v;
+        render();
+      }), 'Toren'),
+    ),
+
+    clubs.length
+      ? card(
+          `${clubs.length} Vereine`,
+          'Klick öffnet das Vereinsprofil',
+          dataTable(
+            [
+              { label: 'Verein', left: true, cell: (c) => c.name },
+              { label: 'Mannschaften', cell: (c) => c.teams.length },
+              { label: 'erfasst', cell: (c) => new Set(c.entries.map((e) => e.team)).size },
+            ],
+            clubs,
+            { onRow: (c) => showClub(c.key) },
+          ),
+        )
+      : null,
+
+    card(
+      `${fmt.format(rows.length)} Spieler${rows.length === 400 ? ' (gekürzt)' : ''}`,
+      'Spaltentitel anklicken zum Sortieren · Zeile öffnet das Spielerprofil',
+      dataTable(
+        [
+          { label: 'Spieler', left: true, cell: (p) => p.name },
+          {
+            label: 'Mannschaft',
+            left: true,
+            cell: (p) =>
+              h(
+                'span',
+                {},
+                p.teams[0]?.team ?? '–',
+                p.teams.length > 1 ? h('span', { class: 'muted' }, ` +${p.teams.length - 1}`) : null,
+              ),
+          },
+          { label: 'Wettbewerb', left: true, cell: (p) => h('span', { class: 'muted' }, `${p.teams[0]?.competitionLabel ?? ''} ${p.teams[0]?.seasonLabel ?? ''}`) },
+          { label: 'Position', left: true, cell: (p) => h('span', { class: 'muted' }, p.position ?? '–') },
+          { label: 'Sp', sortKey: 'apps', cell: (p) => p.apps },
+          { label: 'Tore', sortKey: 'goals', strong: true, cell: (p) => p.goals },
+          { label: 'G', sortKey: 'yellow', cell: (p) => p.yellow || '' },
+          { label: 'R', sortKey: 'red', cell: (p) => p.red || '' },
+        ],
+        rows,
+        { onRow: (p) => openPlayerAnywhere(p), sort: { key: f.sort, dir: f.dir }, onSort },
       ),
     ),
   );
@@ -1590,6 +2055,22 @@ function showTeam(keyOrName) {
       { class: 'stack' },
       tiles.length ? h('div', { class: 'grid grid--tiles' }, tiles) : null,
 
+      global?.clubKey && state.clubs?.[global.clubKey]
+        ? h(
+            'p',
+            { class: 'card__note', style: 'margin:0' },
+            'Verein: ',
+            h(
+              'button',
+              {
+                class: 'chip',
+                onclick: () => showClub(global.clubKey),
+              },
+              state.clubs[global.clubKey].name,
+            ),
+          )
+        : null,
+
       // Der Kern: alle Partien, quer über Wettbewerbe und Saisons.
       bySeason.size
         ? card(
@@ -1860,6 +2341,7 @@ function showMatch(id) {
 /* ------------------------------------------------------------------ render */
 
 const VIEWS = {
+  suche: viewSuche,
   uebersicht: viewUebersicht,
   gegner: viewGegner,
   turnierbaum: viewTurnierbaum,
@@ -1933,7 +2415,8 @@ async function loadCompetition(key) {
 
 function applyHash() {
   const view = (location.hash.replace(/^#\//, '') || 'uebersicht').split('/')[0];
-  const allowed = tabs().map(([k]) => k);
+  // Die Suche haengt an keinem Wettbewerb und ist deshalb immer erreichbar.
+  const allowed = [...tabs().map(([k]) => k), 'suche'];
   state.view = allowed.includes(view) ? view : 'uebersicht';
 }
 
@@ -1961,10 +2444,30 @@ async function boot() {
   try {
     const index = await loadJson('data/index.json');
     state.index = index;
+    // Bei zwei Dutzend Gruppen wird eine flache Liste unbrauchbar: nach
+    // Saison und Liga buendeln.
     const select = document.getElementById('competition-select');
+    const buckets = new Map();
+    for (const c of index.competitions) {
+      const label = `${c.seasonLabel} · ${c.type === 'cup' ? 'Cup' : (c.league ?? c.label)}`;
+      if (!buckets.has(label)) buckets.set(label, []);
+      buckets.get(label).push(c);
+    }
     select.replaceChildren(
-      ...index.competitions.map((c) =>
-        h('option', { value: c.key }, `${c.association} · ${c.league ?? c.label} ${c.group ?? ''} · ${c.seasonLabel}`),
+      ...[...buckets.entries()].map(([label, list]) =>
+        h(
+          'optgroup',
+          { label },
+          // Im zugeklappten Zustand zeigt ein select nur den Optionstext -
+          // deshalb steht die Liga dort mit drin, nicht nur die Gruppe.
+          list.map((c) =>
+            h(
+              'option',
+              { value: c.key },
+              c.type === 'cup' ? c.label : [c.league ?? c.label, c.group].filter(Boolean).join(' · '),
+            ),
+          ),
+        ),
       ),
     );
     select.addEventListener('change', async () => {
@@ -1983,6 +2486,7 @@ async function boot() {
     await loadCompetition(index.competitions[0].key);
     applyHash();
     render();
+    initSearch();
     addEventListener('hashchange', () => {
       applyHash();
       render();

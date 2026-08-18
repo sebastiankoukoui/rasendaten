@@ -5,12 +5,12 @@
   "association": "IFV",
   "orgId": 7,
   "season": 2026,
-  "seasonLabel": "2025/2026",
+  "seasonLabel": "2025/26",
   "ids": {
     "cupId": 5067
   },
-  "sourceUrl": "https://matchcenter.ifv.ch/default.aspx?oid=7&lng=1&s=2027&cp=5067",
-  "collectedAt": "2026-08-17T22:41:37.412Z",
+  "sourceUrl": "https://matchcenter.ifv.ch/default.aspx?oid=7&lng=1&s=2026&cp=5067",
+  "collectedAt": "2026-08-18T02:12:51.673Z",
   "rounds": [
     {
       "round": "Runde 1 - Physio Sportiv IFV-Cup",

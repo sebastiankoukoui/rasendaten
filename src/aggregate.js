@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { ROOT, readJson, writeJson, listJson } from './lib/io.js';
+import { buildRegistries } from './registry.js';
 import {
   MINUTE_BUCKETS,
   bucketOf,
@@ -930,6 +931,11 @@ function buildDossiers(raw, teamIndex) {
       teamKey: teamRow?.key ?? null,
       teamId: d.teamId ?? null,
       clubPageId: d.clubPageId ?? null,
+      clubNumber: d.clubNumber ?? null,
+      clubLogo: d.clubLogo ?? null,
+      // Die vollstaendige Mannschaftsliste des Vereins wandert durch bis in
+      // die Vereinsuebersicht - dort ist sie der eigentliche Inhalt.
+      clubTeams: d.clubTeams ?? null,
       matches: rows,
       upcoming: upcoming.slice(0, 5),
       form: played.slice(-5).map((r) => r.outcome).join(''),
@@ -1230,6 +1236,11 @@ function indexTeamMatches(built, index, { extrasOnly = false } = {}) {
     const key = slug(name);
     if (!index[key]) index[key] = { name, competitions: [], matches: [] };
     const row = rankOf.get(name);
+    const dos = (built.dossiers ?? []).find((x) => x.team === name);
+    if (dos?.clubPageId && !index[key].clubKey) {
+      index[key].clubKey = `v${dos.clubPageId}`;
+      index[key].teamId = dos.teamId ?? null;
+    }
     index[key].competitions.push({
       key: meta.key,
       label: meta.label,
@@ -1292,7 +1303,11 @@ export function buildAll() {
     entry.competitions.sort((a, b) => String(b.seasonLabel).localeCompare(String(a.seasonLabel)));
   }
   writeJson(path.join(OUT_DIR, 'teams.json'), { teams: teamIndex, builtAt: new Date().toISOString() }, { pretty: false });
-  console.log(`Team-Index: ${Object.keys(teamIndex).length} Mannschaften`);
+  const reg = buildRegistries(builtAll);
+  console.log(
+    `Verzeichnisse: ${Object.keys(teamIndex).length} Mannschaften, ` +
+      `${reg.clubs} Vereine, ${reg.players} Spieler`,
+  );
 
   // Vollste Datensaetze zuerst - danach greift die Oberflaeche automatisch.
   index.sort((a, b) => b.matches - a.matches || String(a.key).localeCompare(String(b.key)));

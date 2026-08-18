@@ -30,10 +30,14 @@ const leaguePrefix = (label) => norm(String(label ?? '').split(/[-–]/)[0]);
 async function resolveTeamId(session, entry, target, log) {
   const url = clubUrl({ orgId: entry.orgId ?? 7, clubPageId: entry.clubPageId });
   const club = await session.parse('parseClubTeams', url);
+  // Die Vereinsseite listet alle Mannschaften des Vereins - Aktive, Junioren,
+  // Senioren. Wir merken sie uns komplett, auch wenn nur eine davon in dieser
+  // Gruppe spielt: daraus entsteht spaeter die Vereinsuebersicht.
+  entry._clubTeams = club.teams;
   const wanted = leaguePrefix(target.label);
   const candidates = club.teams.filter((t) => norm(t.label).startsWith(wanted));
 
-  if (candidates.length === 1) return candidates[0];
+  if (candidates.length === 1) return { ...candidates[0], clubNumber: club.clubNumber, logo: club.logo };
   if (!candidates.length) {
     log(`    ? ${entry.team}: keine Mannschaft mit "${wanted}" auf der Vereinsseite`);
     return null;
@@ -43,9 +47,11 @@ async function resolveTeamId(session, entry, target, log) {
   for (const c of candidates) {
     const trr = `/default.aspx?oid=${c.orgId ?? entry.orgId ?? 7}&lng=1&v=${entry.clubPageId}&t=${c.teamId}&a=trr`;
     const group = await session.parse('parseTeamGroup', trr);
-    if (group && group.groupId === target.groupId) return c;
+    if (group && group.groupId === target.groupId) {
+      return { ...c, clubNumber: club.clubNumber, logo: club.logo };
+    }
   }
-  return candidates[0];
+  return { ...candidates[0], clubNumber: club.clubNumber, logo: club.logo };
 }
 
 export async function collectScouting(session, target, cfg, ranking, telegrams, log) {
@@ -56,7 +62,13 @@ export async function collectScouting(session, target, cfg, ranking, telegrams, 
     if (!entry.clubPageId) continue;
     const team = await resolveTeamId(session, entry, target, log);
     if (!team) {
-      dossiers.push({ team: entry.team, clubPageId: entry.clubPageId, matches: [], teamId: null });
+      dossiers.push({
+        team: entry.team,
+        clubPageId: entry.clubPageId,
+        clubTeams: entry._clubTeams ?? null,
+        matches: [],
+        teamId: null,
+      });
       continue;
     }
     const ptUrl =
@@ -69,6 +81,9 @@ export async function collectScouting(session, target, cfg, ranking, telegrams, 
       orgId: team.orgId ?? cfg.orgId,
       teamId: team.teamId,
       teamLabel: team.label,
+      clubNumber: team.clubNumber ?? null,
+      clubLogo: team.logo ?? null,
+      clubTeams: entry._clubTeams ?? null,
       matches,
     });
     log(`    ${entry.team}: ${matches.length} Partien (${matches.filter((m) => m.played).length} gespielt)`);
@@ -116,11 +131,11 @@ export async function collectPreviousSeason(session, target, cfg, teamNames, lea
     if (!open.size) break;
     let index;
     try {
+      // Vorsaison-Seiten aendern sich nicht mehr: Cache nutzen. Das spart
+      // bei vielen Gruppen hunderte Abrufe derselben Ranglisten.
       index = await session.parse(
         'parseGroupIndex',
         leagueUrl({ orgId: cfg.orgId, lang: cfg.lang, season, leagueId }),
-        null,
-        { force: true },
       );
     } catch (err) {
       log(`    ! Liga ${leagueId}: ${err.message}`);
@@ -140,7 +155,7 @@ export async function collectPreviousSeason(session, target, cfg, teamNames, lea
       });
       let ranking;
       try {
-        ranking = await session.parse('parseRanking', url, null, { force: true });
+        ranking = await session.parse('parseRanking', url);
       } catch {
         continue;
       }
@@ -184,7 +199,7 @@ export async function collectPreviousSeason(session, target, cfg, teamNames, lea
       view: 'schedule',
     });
     try {
-      const rows = await session.parse('parseSchedule', url, null, { force: true });
+      const rows = await session.parse('parseSchedule', url);
       for (const m of rows) {
         matches.push({ ...m, league: g.league, group: g.group.name });
       }

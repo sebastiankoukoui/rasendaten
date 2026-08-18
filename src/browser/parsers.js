@@ -499,6 +499,10 @@
     const d = parseDoc(html);
     const seen = new Set();
     const teams = [];
+    // Die Seite nennt den Vereinsnamen nirgends als eigenes Element, wohl aber
+    // die Vereinsnummer - und die ist zugleich der Name der Wappendatei.
+    const clubNumber = int((d.body.textContent.match(/Vereinsnr\.?:\s*(\d+)/) || [])[1]);
+    const logo = d.querySelector('img[src*="/logos/Verein/"]')?.getAttribute('src') ?? null;
     d.querySelectorAll('a[href*="t="]').forEach((a) => {
       const href = a.getAttribute('href') || '';
       const teamId = int(qp(href, 't'));
@@ -513,7 +517,7 @@
         clubPageId: int(qp(href, 'v')),
       });
     });
-    return { teams };
+    return { teams, clubNumber, logo };
   };
 
   /** Aus der Team-Ansicht (a=trr) die Gruppe lesen, in der das Team spielt. */
