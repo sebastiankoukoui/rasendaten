@@ -454,8 +454,24 @@ function matchRow(m, onOpen) {
       m.opponent,
       m.opponentTier ? h('span', { class: 'tier' }, `${m.opponentTier}. L`) : null,
     ),
-    h('span', { class: 'ml-score' }, m.played ? `${m.goalsFor}:${m.goalsAgainst}` : (m.time ?? '–')),
+    scoreCell(m),
     m.outcome ? formRun(m.outcome) : h('span', {}),
+  );
+}
+
+/**
+ * Resultat einer Partie. Eine Nullwertung hat keines - dort steht der Status.
+ * Ein Forfait hat eines, das aber am grünen Tisch entstanden ist.
+ */
+function scoreCell(m) {
+  if (!m.played) {
+    return h('span', { class: 'ml-score muted' }, m.status ?? m.time ?? '–');
+  }
+  return h(
+    'span',
+    { class: 'ml-score' },
+    `${m.goalsFor}:${m.goalsAgainst}`,
+    m.status ? h('span', { class: 'tier' }, m.status) : null,
   );
 }
 
@@ -1437,7 +1453,7 @@ function historyRow(m) {
       h('span', { class: 'muted' }, m.side === 'home' ? 'H ' : 'A '),
       m.opponent,
     ),
-    h('span', { class: 'ml-score' }, m.played ? `${m.goalsFor}:${m.goalsAgainst}` : (m.time ?? '–')),
+    scoreCell(m),
     m.outcome ? formRun(m.outcome) : h('span', {}),
   );
 }
@@ -1462,13 +1478,15 @@ function showTeam(keyOrName) {
   const historyPlayed = (global?.matches ?? []).filter((m) => m.played);
   const today = new Date().toISOString().slice(0, 10);
   const historyUpcoming = (global?.matches ?? [])
-    .filter((m) => !m.played && (!m.date || m.date >= today))
+    .filter((m) => !m.played && !m.status && (!m.date || m.date >= today))
     .slice(0, 8);
 
   // Gespielte Partien nach Saison, neueste zuerst - das ist der Blick, den
-  // man zur Einschaetzung einer Mannschaft braucht.
+  // man zur Einschaetzung einer Mannschaft braucht. Annullierte Partien
+  // bleiben sichtbar, zaehlen aber nirgends mit.
+  const historyShown = (global?.matches ?? []).filter((m) => m.played || m.status);
   const bySeason = new Map();
-  for (const m of [...historyPlayed].reverse()) {
+  for (const m of [...historyShown].reverse()) {
     if (!bySeason.has(m.seasonLabel)) bySeason.set(m.seasonLabel, []);
     bySeason.get(m.seasonLabel).push(m);
   }

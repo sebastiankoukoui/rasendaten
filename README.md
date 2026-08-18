@@ -93,8 +93,18 @@ Das ist die Grundlage des Gegner-Checks: Wer im August wissen will, wie der
 erste Meisterschaftsgegner drauf ist, findet dessen Testspiele und Cup-Partien
 sonst nirgends gebündelt.
 
-Zwei Eigenheiten:
+Drei Eigenheiten:
 
+- **Der Wettbewerb steht nicht in der Zeile.** Bei gespielten Partien liefert
+  ihn der Telegramm-Kopf; bei Forfait-Partien gibt es keinen Bericht. Dann
+  entscheidet der Nummernkreis der Spielnummer, der systemweit einheitlich
+  vergeben ist: `1xxxxx` Meisterschaft, `5xxxxx` Cup, `7xxxxx` Trainingsspiele.
+  Gegengeprüft am Datensatz der 4. Liga Gruppe 2 — alle 26 Berichte im
+  7er-Kreis lauten „Trainingsspiele", beide im 5er-Kreis „Cup".
+- **`.sppStatusText` trägt den Sonderfall**: „Forfait", „Nullwertung",
+  „Spiel findet nicht statt". Eine Nullwertung zählt nirgends mit (die Partie
+  wurde annulliert oder nie gespielt), bleibt aber sichtbar. Ein Forfait ist
+  ein gültiges Resultat und wird als solches markiert.
 - **Die Ansicht kennt nur die laufende Saison.** `s=` wird ignoriert, `ls`/`sg`
   ändern nichts. Für die Vorsaison führt kein Weg an den Gruppen-Ranglisten
   vorbei — der Collector sucht die Vorjahresligen der Reihe nach ab, bis jede

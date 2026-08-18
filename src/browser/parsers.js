@@ -476,9 +476,13 @@
       const ag = int(txt(r.querySelector('.torB')));
       const tgHref = r.querySelector('.telegramm-link a')?.getAttribute('href') ?? '';
       const info = txt(r.querySelector('.font-small'));
+      // "Forfait", "Nullwertung", "verschoben" - steht als eigener Block ueber
+      // der Spielnummer, in der Telegramm-Spalte zusaetzlich als Kuerzel.
+      const status = txt(r.querySelector('.sppStatusText')) || null;
       return {
         telegramId: int(qp(tgHref, 'tg')),
         matchNo: int((info.match(/Spielnummer\s*(\d+)/) || [])[1]),
+        status,
         date: isoDate(dateTxt),
         time: timeTxt || null,
         home: readSide(r.querySelector('.teamA')),

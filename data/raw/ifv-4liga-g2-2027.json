@@ -58,7 +58,7 @@
     }
   ],
   "sourceUrl": "https://matchcenter.ifv.ch/default.aspx?oid=7&lng=1&s=2027&ln=13030&ls=25896&sg=70463&a=mrr",
-  "collectedAt": "2026-08-17T23:53:02.478Z",
+  "collectedAt": "2026-08-18T00:20:27.595Z",
   "matches": [
     {
       "telegramId": 4328051,
@@ -1586,6 +1586,7 @@
         {
           "telegramId": 4307311,
           "matchNo": 700816,
+          "status": null,
           "date": "2026-07-24",
           "time": "20:15",
           "home": {
@@ -1609,6 +1610,7 @@
         {
           "telegramId": 4306278,
           "matchNo": 700635,
+          "status": null,
           "date": "2026-07-31",
           "time": "20:00",
           "home": {
@@ -1632,6 +1634,7 @@
         {
           "telegramId": 4307632,
           "matchNo": 700966,
+          "status": null,
           "date": "2026-08-07",
           "time": "20:00",
           "home": {
@@ -1655,6 +1658,7 @@
         {
           "telegramId": null,
           "matchNo": 700749,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-08-14",
           "time": "20:00",
           "home": {
@@ -1678,6 +1682,7 @@
         {
           "telegramId": null,
           "matchNo": 117100,
+          "status": null,
           "date": "2026-08-22",
           "time": "19:30",
           "home": {
@@ -1701,6 +1706,7 @@
         {
           "telegramId": null,
           "matchNo": 117107,
+          "status": null,
           "date": "2026-08-30",
           "time": "15:00",
           "home": {
@@ -1724,6 +1730,7 @@
         {
           "telegramId": null,
           "matchNo": 117111,
+          "status": null,
           "date": "2026-09-05",
           "time": "18:00",
           "home": {
@@ -1747,6 +1754,7 @@
         {
           "telegramId": null,
           "matchNo": 117116,
+          "status": null,
           "date": "2026-09-12",
           "time": "20:15",
           "home": {
@@ -1770,6 +1778,7 @@
         {
           "telegramId": null,
           "matchNo": 117122,
+          "status": null,
           "date": "2026-09-26",
           "time": "18:00",
           "home": {
@@ -1793,6 +1802,7 @@
         {
           "telegramId": null,
           "matchNo": 117125,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:00",
           "home": {
@@ -1816,6 +1826,7 @@
         {
           "telegramId": null,
           "matchNo": 117133,
+          "status": null,
           "date": "2026-10-11",
           "time": "15:00",
           "home": {
@@ -1839,6 +1850,7 @@
         {
           "telegramId": null,
           "matchNo": 117134,
+          "status": null,
           "date": "2026-10-17",
           "time": "17:00",
           "home": {
@@ -1862,6 +1874,7 @@
         {
           "telegramId": null,
           "matchNo": 117143,
+          "status": null,
           "date": "2026-10-24",
           "time": "20:15",
           "home": {
@@ -1885,6 +1898,7 @@
         {
           "telegramId": null,
           "matchNo": 117145,
+          "status": null,
           "date": "2027-04-03",
           "time": "18:00",
           "home": {
@@ -1908,6 +1922,7 @@
         {
           "telegramId": null,
           "matchNo": 117152,
+          "status": null,
           "date": "2027-04-10",
           "time": "19:30",
           "home": {
@@ -1931,6 +1946,7 @@
         {
           "telegramId": null,
           "matchNo": 117156,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -1954,6 +1970,7 @@
         {
           "telegramId": null,
           "matchNo": 117161,
+          "status": null,
           "date": "2027-04-25",
           "time": "13:30",
           "home": {
@@ -1977,6 +1994,7 @@
         {
           "telegramId": null,
           "matchNo": 117167,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -2000,6 +2018,7 @@
         {
           "telegramId": null,
           "matchNo": 117170,
+          "status": null,
           "date": "2027-05-08",
           "time": "20:00",
           "home": {
@@ -2023,6 +2042,7 @@
         {
           "telegramId": null,
           "matchNo": 117178,
+          "status": null,
           "date": "2027-05-22",
           "time": "18:00",
           "home": {
@@ -2046,6 +2066,7 @@
         {
           "telegramId": null,
           "matchNo": 117179,
+          "status": null,
           "date": "2027-05-29",
           "time": "18:00",
           "home": {
@@ -2069,6 +2090,7 @@
         {
           "telegramId": null,
           "matchNo": 117188,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -2101,6 +2123,7 @@
         {
           "telegramId": 4342971,
           "matchNo": 704268,
+          "status": null,
           "date": "2026-08-11",
           "time": "20:00",
           "home": {
@@ -2124,6 +2147,7 @@
         {
           "telegramId": 4339791,
           "matchNo": 703995,
+          "status": null,
           "date": "2026-08-16",
           "time": "14:00",
           "home": {
@@ -2147,6 +2171,7 @@
         {
           "telegramId": null,
           "matchNo": 700886,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-08-16",
           "time": "14:00",
           "home": {
@@ -2170,6 +2195,7 @@
         {
           "telegramId": null,
           "matchNo": 117099,
+          "status": null,
           "date": "2026-08-22",
           "time": "18:00",
           "home": {
@@ -2193,6 +2219,7 @@
         {
           "telegramId": null,
           "matchNo": 117104,
+          "status": null,
           "date": "2026-08-30",
           "time": "14:00",
           "home": {
@@ -2216,6 +2243,7 @@
         {
           "telegramId": null,
           "matchNo": 117114,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -2239,6 +2267,7 @@
         {
           "telegramId": null,
           "matchNo": 117109,
+          "status": null,
           "date": "2026-09-19",
           "time": "18:30",
           "home": {
@@ -2262,6 +2291,7 @@
         {
           "telegramId": null,
           "matchNo": 117119,
+          "status": null,
           "date": "2026-09-26",
           "time": "19:30",
           "home": {
@@ -2285,6 +2315,7 @@
         {
           "telegramId": null,
           "matchNo": 117124,
+          "status": null,
           "date": "2026-10-03",
           "time": "19:30",
           "home": {
@@ -2308,6 +2339,7 @@
         {
           "telegramId": null,
           "matchNo": 117129,
+          "status": null,
           "date": "2026-10-11",
           "time": "13:00",
           "home": {
@@ -2331,6 +2363,7 @@
         {
           "telegramId": null,
           "matchNo": 117134,
+          "status": null,
           "date": "2026-10-17",
           "time": "17:00",
           "home": {
@@ -2354,6 +2387,7 @@
         {
           "telegramId": null,
           "matchNo": 117139,
+          "status": null,
           "date": "2026-10-23",
           "time": "20:15",
           "home": {
@@ -2377,6 +2411,7 @@
         {
           "telegramId": null,
           "matchNo": 117144,
+          "status": null,
           "date": "2027-04-03",
           "time": null,
           "home": {
@@ -2400,6 +2435,7 @@
         {
           "telegramId": null,
           "matchNo": 117149,
+          "status": null,
           "date": "2027-04-10",
           "time": "20:15",
           "home": {
@@ -2423,6 +2459,7 @@
         {
           "telegramId": null,
           "matchNo": 117154,
+          "status": null,
           "date": "2027-04-17",
           "time": null,
           "home": {
@@ -2446,6 +2483,7 @@
         {
           "telegramId": null,
           "matchNo": 117159,
+          "status": null,
           "date": "2027-04-24",
           "time": "20:00",
           "home": {
@@ -2469,6 +2507,7 @@
         {
           "telegramId": null,
           "matchNo": 117164,
+          "status": null,
           "date": "2027-05-01",
           "time": null,
           "home": {
@@ -2492,6 +2531,7 @@
         {
           "telegramId": null,
           "matchNo": 117169,
+          "status": null,
           "date": "2027-05-08",
           "time": "18:00",
           "home": {
@@ -2515,6 +2555,7 @@
         {
           "telegramId": null,
           "matchNo": 117174,
+          "status": null,
           "date": "2027-05-22",
           "time": null,
           "home": {
@@ -2538,6 +2579,7 @@
         {
           "telegramId": null,
           "matchNo": 117179,
+          "status": null,
           "date": "2027-05-29",
           "time": "18:00",
           "home": {
@@ -2561,6 +2603,7 @@
         {
           "telegramId": null,
           "matchNo": 117184,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -2593,6 +2636,7 @@
         {
           "telegramId": 4307622,
           "matchNo": 700956,
+          "status": null,
           "date": "2026-08-05",
           "time": "19:30",
           "home": {
@@ -2616,6 +2660,7 @@
         {
           "telegramId": 4307623,
           "matchNo": 700957,
+          "status": null,
           "date": "2026-08-05",
           "time": "20:20",
           "home": {
@@ -2639,6 +2684,7 @@
         {
           "telegramId": 4307626,
           "matchNo": 700960,
+          "status": null,
           "date": "2026-08-05",
           "time": "21:10",
           "home": {
@@ -2662,6 +2708,7 @@
         {
           "telegramId": 4307627,
           "matchNo": 700961,
+          "status": null,
           "date": "2026-08-08",
           "time": "16:00",
           "home": {
@@ -2685,6 +2732,7 @@
         {
           "telegramId": 4308425,
           "matchNo": 701498,
+          "status": null,
           "date": "2026-08-15",
           "time": "15:00",
           "home": {
@@ -2708,6 +2756,7 @@
         {
           "telegramId": null,
           "matchNo": 117100,
+          "status": null,
           "date": "2026-08-22",
           "time": "19:30",
           "home": {
@@ -2731,6 +2780,7 @@
         {
           "telegramId": null,
           "matchNo": 117108,
+          "status": null,
           "date": "2026-08-30",
           "time": "16:00",
           "home": {
@@ -2754,6 +2804,7 @@
         {
           "telegramId": null,
           "matchNo": 117118,
+          "status": null,
           "date": "2026-09-10",
           "time": "20:00",
           "home": {
@@ -2777,6 +2828,7 @@
         {
           "telegramId": null,
           "matchNo": 117109,
+          "status": null,
           "date": "2026-09-19",
           "time": "18:30",
           "home": {
@@ -2800,6 +2852,7 @@
         {
           "telegramId": null,
           "matchNo": 117120,
+          "status": null,
           "date": "2026-09-25",
           "time": "20:30",
           "home": {
@@ -2823,6 +2876,7 @@
         {
           "telegramId": null,
           "matchNo": 117127,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:30",
           "home": {
@@ -2846,6 +2900,7 @@
         {
           "telegramId": null,
           "matchNo": 117131,
+          "status": null,
           "date": "2026-10-11",
           "time": "14:00",
           "home": {
@@ -2869,6 +2924,7 @@
         {
           "telegramId": null,
           "matchNo": 117136,
+          "status": null,
           "date": "2026-10-17",
           "time": "18:30",
           "home": {
@@ -2892,6 +2948,7 @@
         {
           "telegramId": null,
           "matchNo": 117142,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -2915,6 +2972,7 @@
         {
           "telegramId": null,
           "matchNo": 117145,
+          "status": null,
           "date": "2027-04-03",
           "time": "18:00",
           "home": {
@@ -2938,6 +2996,7 @@
         {
           "telegramId": null,
           "matchNo": 117153,
+          "status": null,
           "date": "2027-04-10",
           "time": null,
           "home": {
@@ -2961,6 +3020,7 @@
         {
           "telegramId": null,
           "matchNo": 117154,
+          "status": null,
           "date": "2027-04-17",
           "time": null,
           "home": {
@@ -2984,6 +3044,7 @@
         {
           "telegramId": null,
           "matchNo": 117163,
+          "status": null,
           "date": "2027-04-24",
           "time": "19:30",
           "home": {
@@ -3007,6 +3068,7 @@
         {
           "telegramId": null,
           "matchNo": 117165,
+          "status": null,
           "date": "2027-05-01",
           "time": null,
           "home": {
@@ -3030,6 +3092,7 @@
         {
           "telegramId": null,
           "matchNo": 117172,
+          "status": null,
           "date": "2027-05-09",
           "time": "13:30",
           "home": {
@@ -3053,6 +3116,7 @@
         {
           "telegramId": null,
           "matchNo": 117176,
+          "status": null,
           "date": "2027-05-22",
           "time": null,
           "home": {
@@ -3076,6 +3140,7 @@
         {
           "telegramId": null,
           "matchNo": 117181,
+          "status": null,
           "date": "2027-05-29",
           "time": "20:00",
           "home": {
@@ -3099,6 +3164,7 @@
         {
           "telegramId": null,
           "matchNo": 117187,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -3131,6 +3197,7 @@
         {
           "telegramId": null,
           "matchNo": 700568,
+          "status": "Nicht gespielt (Gegner)",
           "date": "2026-07-11",
           "time": "17:00",
           "home": {
@@ -3154,6 +3221,7 @@
         {
           "telegramId": 4308442,
           "matchNo": 701515,
+          "status": null,
           "date": "2026-07-18",
           "time": "17:00",
           "home": {
@@ -3177,6 +3245,7 @@
         {
           "telegramId": 4307278,
           "matchNo": 700797,
+          "status": null,
           "date": "2026-07-25",
           "time": "16:00",
           "home": {
@@ -3200,6 +3269,7 @@
         {
           "telegramId": 4307633,
           "matchNo": 700967,
+          "status": null,
           "date": "2026-08-08",
           "time": "17:00",
           "home": {
@@ -3223,6 +3293,7 @@
         {
           "telegramId": 4337747,
           "matchNo": 510260,
+          "status": null,
           "date": "2026-08-16",
           "time": "19:00",
           "home": {
@@ -3246,6 +3317,7 @@
         {
           "telegramId": null,
           "matchNo": 117099,
+          "status": null,
           "date": "2026-08-22",
           "time": "18:00",
           "home": {
@@ -3269,6 +3341,7 @@
         {
           "telegramId": null,
           "matchNo": 117108,
+          "status": null,
           "date": "2026-08-30",
           "time": "16:00",
           "home": {
@@ -3292,6 +3365,7 @@
         {
           "telegramId": null,
           "matchNo": 117110,
+          "status": null,
           "date": "2026-09-05",
           "time": "19:30",
           "home": {
@@ -3315,6 +3389,7 @@
         {
           "telegramId": null,
           "matchNo": 117117,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -3338,6 +3413,7 @@
         {
           "telegramId": null,
           "matchNo": 117121,
+          "status": null,
           "date": "2026-09-27",
           "time": "13:30",
           "home": {
@@ -3361,6 +3437,7 @@
         {
           "telegramId": null,
           "matchNo": 117126,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:00",
           "home": {
@@ -3384,6 +3461,7 @@
         {
           "telegramId": null,
           "matchNo": 117132,
+          "status": null,
           "date": "2026-10-11",
           "time": "14:00",
           "home": {
@@ -3407,6 +3485,7 @@
         {
           "telegramId": null,
           "matchNo": 117135,
+          "status": null,
           "date": "2026-10-17",
           "time": "18:00",
           "home": {
@@ -3430,6 +3509,7 @@
         {
           "telegramId": null,
           "matchNo": 117143,
+          "status": null,
           "date": "2026-10-24",
           "time": "20:15",
           "home": {
@@ -3453,6 +3533,7 @@
         {
           "telegramId": null,
           "matchNo": 117144,
+          "status": null,
           "date": "2027-04-03",
           "time": null,
           "home": {
@@ -3476,6 +3557,7 @@
         {
           "telegramId": null,
           "matchNo": 117153,
+          "status": null,
           "date": "2027-04-10",
           "time": null,
           "home": {
@@ -3499,6 +3581,7 @@
         {
           "telegramId": null,
           "matchNo": 117155,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -3522,6 +3605,7 @@
         {
           "telegramId": null,
           "matchNo": 117162,
+          "status": null,
           "date": "2027-04-24",
           "time": null,
           "home": {
@@ -3545,6 +3629,7 @@
         {
           "telegramId": null,
           "matchNo": 117166,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -3568,6 +3653,7 @@
         {
           "telegramId": null,
           "matchNo": 117171,
+          "status": null,
           "date": "2027-05-08",
           "time": "20:15",
           "home": {
@@ -3591,6 +3677,7 @@
         {
           "telegramId": null,
           "matchNo": 117177,
+          "status": null,
           "date": "2027-05-22",
           "time": "18:00",
           "home": {
@@ -3614,6 +3701,7 @@
         {
           "telegramId": null,
           "matchNo": 117180,
+          "status": null,
           "date": "2027-05-29",
           "time": "18:00",
           "home": {
@@ -3637,6 +3725,7 @@
         {
           "telegramId": null,
           "matchNo": 117188,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -3669,6 +3758,7 @@
         {
           "telegramId": 4307632,
           "matchNo": 700966,
+          "status": null,
           "date": "2026-08-07",
           "time": "20:00",
           "home": {
@@ -3692,6 +3782,7 @@
         {
           "telegramId": null,
           "matchNo": 705513,
+          "status": "Nullwertung",
           "date": "2026-08-08",
           "time": "12:00",
           "home": {
@@ -3715,6 +3806,7 @@
         {
           "telegramId": null,
           "matchNo": 705518,
+          "status": "Nullwertung",
           "date": "2026-08-08",
           "time": "14:30",
           "home": {
@@ -3738,6 +3830,7 @@
         {
           "telegramId": null,
           "matchNo": 705524,
+          "status": "Nullwertung",
           "date": "2026-08-08",
           "time": "16:30",
           "home": {
@@ -3761,6 +3854,7 @@
         {
           "telegramId": null,
           "matchNo": 510250,
+          "status": "Forfait",
           "date": "2026-08-16",
           "time": "16:00",
           "home": {
@@ -3784,6 +3878,7 @@
         {
           "telegramId": null,
           "matchNo": 117101,
+          "status": null,
           "date": "2026-08-22",
           "time": "19:30",
           "home": {
@@ -3807,6 +3902,7 @@
         {
           "telegramId": null,
           "matchNo": 117106,
+          "status": null,
           "date": "2026-08-30",
           "time": "15:00",
           "home": {
@@ -3830,6 +3926,7 @@
         {
           "telegramId": null,
           "matchNo": 117112,
+          "status": null,
           "date": "2026-09-06",
           "time": "13:30",
           "home": {
@@ -3853,6 +3950,7 @@
         {
           "telegramId": null,
           "matchNo": 117115,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -3876,6 +3974,7 @@
         {
           "telegramId": null,
           "matchNo": 117123,
+          "status": null,
           "date": "2026-09-26",
           "time": "20:00",
           "home": {
@@ -3899,6 +3998,7 @@
         {
           "telegramId": null,
           "matchNo": 117124,
+          "status": null,
           "date": "2026-10-03",
           "time": "19:30",
           "home": {
@@ -3922,6 +4022,7 @@
         {
           "telegramId": null,
           "matchNo": 117133,
+          "status": null,
           "date": "2026-10-11",
           "time": "15:00",
           "home": {
@@ -3945,6 +4046,7 @@
         {
           "telegramId": null,
           "matchNo": 117135,
+          "status": null,
           "date": "2026-10-17",
           "time": "18:00",
           "home": {
@@ -3968,6 +4070,7 @@
         {
           "telegramId": null,
           "matchNo": 117142,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -3991,6 +4094,7 @@
         {
           "telegramId": null,
           "matchNo": 117146,
+          "status": null,
           "date": "2027-04-03",
           "time": "18:00",
           "home": {
@@ -4014,6 +4118,7 @@
         {
           "telegramId": null,
           "matchNo": 117151,
+          "status": null,
           "date": "2027-04-10",
           "time": null,
           "home": {
@@ -4037,6 +4142,7 @@
         {
           "telegramId": null,
           "matchNo": 117157,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -4060,6 +4166,7 @@
         {
           "telegramId": null,
           "matchNo": 117160,
+          "status": null,
           "date": "2027-04-24",
           "time": "20:15",
           "home": {
@@ -4083,6 +4190,7 @@
         {
           "telegramId": null,
           "matchNo": 117168,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -4106,6 +4214,7 @@
         {
           "telegramId": null,
           "matchNo": 117169,
+          "status": null,
           "date": "2027-05-08",
           "time": "18:00",
           "home": {
@@ -4129,6 +4238,7 @@
         {
           "telegramId": null,
           "matchNo": 117178,
+          "status": null,
           "date": "2027-05-22",
           "time": "18:00",
           "home": {
@@ -4152,6 +4262,7 @@
         {
           "telegramId": null,
           "matchNo": 117180,
+          "status": null,
           "date": "2027-05-29",
           "time": "18:00",
           "home": {
@@ -4175,6 +4286,7 @@
         {
           "telegramId": null,
           "matchNo": 117187,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -4207,6 +4319,7 @@
         {
           "telegramId": 4403272,
           "matchNo": 708859,
+          "status": null,
           "date": "2026-08-17",
           "time": "20:30",
           "home": {
@@ -4230,6 +4343,7 @@
         {
           "telegramId": null,
           "matchNo": 708803,
+          "status": null,
           "date": "2026-08-20",
           "time": "20:45",
           "home": {
@@ -4253,6 +4367,7 @@
         {
           "telegramId": null,
           "matchNo": 117102,
+          "status": null,
           "date": "2026-08-23",
           "time": "16:00",
           "home": {
@@ -4276,6 +4391,7 @@
         {
           "telegramId": null,
           "matchNo": 117105,
+          "status": null,
           "date": "2026-08-30",
           "time": "14:00",
           "home": {
@@ -4299,6 +4415,7 @@
         {
           "telegramId": null,
           "matchNo": 117113,
+          "status": null,
           "date": "2026-09-05",
           "time": "18:00",
           "home": {
@@ -4322,6 +4439,7 @@
         {
           "telegramId": null,
           "matchNo": 117114,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -4345,6 +4463,7 @@
         {
           "telegramId": null,
           "matchNo": 117123,
+          "status": null,
           "date": "2026-09-26",
           "time": "20:00",
           "home": {
@@ -4368,6 +4487,7 @@
         {
           "telegramId": null,
           "matchNo": 117125,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:00",
           "home": {
@@ -4391,6 +4511,7 @@
         {
           "telegramId": null,
           "matchNo": 117132,
+          "status": null,
           "date": "2026-10-11",
           "time": "14:00",
           "home": {
@@ -4414,6 +4535,7 @@
         {
           "telegramId": null,
           "matchNo": 117136,
+          "status": null,
           "date": "2026-10-17",
           "time": "18:30",
           "home": {
@@ -4437,6 +4559,7 @@
         {
           "telegramId": null,
           "matchNo": 117141,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -4460,6 +4583,7 @@
         {
           "telegramId": null,
           "matchNo": 117147,
+          "status": null,
           "date": "2027-04-03",
           "time": "20:00",
           "home": {
@@ -4483,6 +4607,7 @@
         {
           "telegramId": null,
           "matchNo": 117150,
+          "status": null,
           "date": "2027-04-11",
           "time": "13:30",
           "home": {
@@ -4506,6 +4631,7 @@
         {
           "telegramId": null,
           "matchNo": 117158,
+          "status": null,
           "date": "2027-04-17",
           "time": "20:00",
           "home": {
@@ -4529,6 +4655,7 @@
         {
           "telegramId": null,
           "matchNo": 117159,
+          "status": null,
           "date": "2027-04-24",
           "time": "20:00",
           "home": {
@@ -4552,6 +4679,7 @@
         {
           "telegramId": null,
           "matchNo": 117168,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -4575,6 +4703,7 @@
         {
           "telegramId": null,
           "matchNo": 117170,
+          "status": null,
           "date": "2027-05-08",
           "time": "20:00",
           "home": {
@@ -4598,6 +4727,7 @@
         {
           "telegramId": null,
           "matchNo": 117177,
+          "status": null,
           "date": "2027-05-22",
           "time": "18:00",
           "home": {
@@ -4621,6 +4751,7 @@
         {
           "telegramId": null,
           "matchNo": 117181,
+          "status": null,
           "date": "2027-05-29",
           "time": "20:00",
           "home": {
@@ -4644,6 +4775,7 @@
         {
           "telegramId": null,
           "matchNo": 117186,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -4676,6 +4808,7 @@
         {
           "telegramId": 4306278,
           "matchNo": 700635,
+          "status": null,
           "date": "2026-07-31",
           "time": "20:00",
           "home": {
@@ -4699,6 +4832,7 @@
         {
           "telegramId": 4378315,
           "matchNo": 705480,
+          "status": null,
           "date": "2026-08-08",
           "time": "18:00",
           "home": {
@@ -4722,6 +4856,7 @@
         {
           "telegramId": null,
           "matchNo": 702156,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-08-15",
           "time": "18:00",
           "home": {
@@ -4745,6 +4880,7 @@
         {
           "telegramId": null,
           "matchNo": 702341,
+          "status": null,
           "date": "2026-08-15",
           "time": "18:00",
           "home": {
@@ -4768,6 +4904,7 @@
         {
           "telegramId": null,
           "matchNo": 702339,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-08-15",
           "time": "20:00",
           "home": {
@@ -4791,6 +4928,7 @@
         {
           "telegramId": null,
           "matchNo": 117103,
+          "status": null,
           "date": "2026-08-23",
           "time": "13:30",
           "home": {
@@ -4814,6 +4952,7 @@
         {
           "telegramId": null,
           "matchNo": 117104,
+          "status": null,
           "date": "2026-08-30",
           "time": "14:00",
           "home": {
@@ -4837,6 +4976,7 @@
         {
           "telegramId": null,
           "matchNo": 117113,
+          "status": null,
           "date": "2026-09-05",
           "time": "18:00",
           "home": {
@@ -4860,6 +5000,7 @@
         {
           "telegramId": null,
           "matchNo": 117115,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -4883,6 +5024,7 @@
         {
           "telegramId": null,
           "matchNo": 117122,
+          "status": null,
           "date": "2026-09-26",
           "time": "18:00",
           "home": {
@@ -4906,6 +5048,7 @@
         {
           "telegramId": null,
           "matchNo": 117126,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:00",
           "home": {
@@ -4929,6 +5072,7 @@
         {
           "telegramId": null,
           "matchNo": 117131,
+          "status": null,
           "date": "2026-10-11",
           "time": "14:00",
           "home": {
@@ -4952,6 +5096,7 @@
         {
           "telegramId": null,
           "matchNo": 117137,
+          "status": null,
           "date": "2026-10-17",
           "time": "19:30",
           "home": {
@@ -4975,6 +5120,7 @@
         {
           "telegramId": null,
           "matchNo": 117140,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -4998,6 +5144,7 @@
         {
           "telegramId": null,
           "matchNo": 117148,
+          "status": null,
           "date": "2027-04-03",
           "time": "20:15",
           "home": {
@@ -5021,6 +5168,7 @@
         {
           "telegramId": null,
           "matchNo": 117149,
+          "status": null,
           "date": "2027-04-10",
           "time": "20:15",
           "home": {
@@ -5044,6 +5192,7 @@
         {
           "telegramId": null,
           "matchNo": 117158,
+          "status": null,
           "date": "2027-04-17",
           "time": "20:00",
           "home": {
@@ -5067,6 +5216,7 @@
         {
           "telegramId": null,
           "matchNo": 117160,
+          "status": null,
           "date": "2027-04-24",
           "time": "20:15",
           "home": {
@@ -5090,6 +5240,7 @@
         {
           "telegramId": null,
           "matchNo": 117167,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -5113,6 +5264,7 @@
         {
           "telegramId": null,
           "matchNo": 117171,
+          "status": null,
           "date": "2027-05-08",
           "time": "20:15",
           "home": {
@@ -5136,6 +5288,7 @@
         {
           "telegramId": null,
           "matchNo": 117176,
+          "status": null,
           "date": "2027-05-22",
           "time": null,
           "home": {
@@ -5159,6 +5312,7 @@
         {
           "telegramId": null,
           "matchNo": 117182,
+          "status": null,
           "date": "2027-05-29",
           "time": "20:15",
           "home": {
@@ -5182,6 +5336,7 @@
         {
           "telegramId": null,
           "matchNo": 117185,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -5214,6 +5369,7 @@
         {
           "telegramId": 4307717,
           "matchNo": 701026,
+          "status": null,
           "date": "2026-07-21",
           "time": "20:00",
           "home": {
@@ -5237,6 +5393,7 @@
         {
           "telegramId": 4307718,
           "matchNo": 701027,
+          "status": null,
           "date": "2026-07-28",
           "time": "20:00",
           "home": {
@@ -5260,6 +5417,7 @@
         {
           "telegramId": 4337742,
           "matchNo": 510255,
+          "status": null,
           "date": "2026-08-16",
           "time": "13:30",
           "home": {
@@ -5283,6 +5441,7 @@
         {
           "telegramId": null,
           "matchNo": 117103,
+          "status": null,
           "date": "2026-08-23",
           "time": "13:30",
           "home": {
@@ -5306,6 +5465,7 @@
         {
           "telegramId": null,
           "matchNo": 117105,
+          "status": null,
           "date": "2026-08-30",
           "time": "14:00",
           "home": {
@@ -5329,6 +5489,7 @@
         {
           "telegramId": null,
           "matchNo": 117112,
+          "status": null,
           "date": "2026-09-06",
           "time": "13:30",
           "home": {
@@ -5352,6 +5513,7 @@
         {
           "telegramId": null,
           "matchNo": 117116,
+          "status": null,
           "date": "2026-09-12",
           "time": "20:15",
           "home": {
@@ -5375,6 +5537,7 @@
         {
           "telegramId": null,
           "matchNo": 117121,
+          "status": null,
           "date": "2026-09-27",
           "time": "13:30",
           "home": {
@@ -5398,6 +5561,7 @@
         {
           "telegramId": null,
           "matchNo": 117127,
+          "status": null,
           "date": "2026-10-03",
           "time": "18:30",
           "home": {
@@ -5421,6 +5585,7 @@
         {
           "telegramId": null,
           "matchNo": 117130,
+          "status": null,
           "date": "2026-10-11",
           "time": "13:30",
           "home": {
@@ -5444,6 +5609,7 @@
         {
           "telegramId": null,
           "matchNo": 117138,
+          "status": null,
           "date": "2026-10-17",
           "time": "16:00",
           "home": {
@@ -5467,6 +5633,7 @@
         {
           "telegramId": null,
           "matchNo": 117139,
+          "status": null,
           "date": "2026-10-23",
           "time": "20:15",
           "home": {
@@ -5490,6 +5657,7 @@
         {
           "telegramId": null,
           "matchNo": 117148,
+          "status": null,
           "date": "2027-04-03",
           "time": "20:15",
           "home": {
@@ -5513,6 +5681,7 @@
         {
           "telegramId": null,
           "matchNo": 117150,
+          "status": null,
           "date": "2027-04-11",
           "time": "13:30",
           "home": {
@@ -5536,6 +5705,7 @@
         {
           "telegramId": null,
           "matchNo": 117157,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -5559,6 +5729,7 @@
         {
           "telegramId": null,
           "matchNo": 117161,
+          "status": null,
           "date": "2027-04-25",
           "time": "13:30",
           "home": {
@@ -5582,6 +5753,7 @@
         {
           "telegramId": null,
           "matchNo": 117166,
+          "status": null,
           "date": "2027-05-01",
           "time": "18:00",
           "home": {
@@ -5605,6 +5777,7 @@
         {
           "telegramId": null,
           "matchNo": 117172,
+          "status": null,
           "date": "2027-05-09",
           "time": "13:30",
           "home": {
@@ -5628,6 +5801,7 @@
         {
           "telegramId": null,
           "matchNo": 117175,
+          "status": null,
           "date": "2027-05-22",
           "time": "19:30",
           "home": {
@@ -5651,6 +5825,7 @@
         {
           "telegramId": null,
           "matchNo": 117183,
+          "status": null,
           "date": "2027-05-30",
           "time": "13:30",
           "home": {
@@ -5674,6 +5849,7 @@
         {
           "telegramId": null,
           "matchNo": 117184,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -5706,6 +5882,7 @@
         {
           "telegramId": 4327365,
           "matchNo": 703693,
+          "status": null,
           "date": "2026-08-08",
           "time": "18:00",
           "home": {
@@ -5729,6 +5906,7 @@
         {
           "telegramId": 4310013,
           "matchNo": 702672,
+          "status": null,
           "date": "2026-08-11",
           "time": "20:45",
           "home": {
@@ -5752,6 +5930,7 @@
         {
           "telegramId": 4310015,
           "matchNo": 702674,
+          "status": null,
           "date": "2026-08-14",
           "time": "20:45",
           "home": {
@@ -5775,6 +5954,7 @@
         {
           "telegramId": null,
           "matchNo": 703548,
+          "status": null,
           "date": "2026-08-18",
           "time": "20:15",
           "home": {
@@ -5798,6 +5978,7 @@
         {
           "telegramId": null,
           "matchNo": 117102,
+          "status": null,
           "date": "2026-08-23",
           "time": "16:00",
           "home": {
@@ -5821,6 +6002,7 @@
         {
           "telegramId": null,
           "matchNo": 117106,
+          "status": null,
           "date": "2026-08-30",
           "time": "15:00",
           "home": {
@@ -5844,6 +6026,7 @@
         {
           "telegramId": null,
           "matchNo": 117111,
+          "status": null,
           "date": "2026-09-05",
           "time": "18:00",
           "home": {
@@ -5867,6 +6050,7 @@
         {
           "telegramId": null,
           "matchNo": 117117,
+          "status": null,
           "date": "2026-09-12",
           "time": "18:00",
           "home": {
@@ -5890,6 +6074,7 @@
         {
           "telegramId": null,
           "matchNo": 117120,
+          "status": null,
           "date": "2026-09-25",
           "time": "20:30",
           "home": {
@@ -5913,6 +6098,7 @@
         {
           "telegramId": null,
           "matchNo": 117128,
+          "status": null,
           "date": "2026-10-03",
           "time": "19:30",
           "home": {
@@ -5936,6 +6122,7 @@
         {
           "telegramId": null,
           "matchNo": 117129,
+          "status": null,
           "date": "2026-10-11",
           "time": "13:00",
           "home": {
@@ -5959,6 +6146,7 @@
         {
           "telegramId": null,
           "matchNo": 117138,
+          "status": null,
           "date": "2026-10-17",
           "time": "16:00",
           "home": {
@@ -5982,6 +6170,7 @@
         {
           "telegramId": null,
           "matchNo": 117140,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -6005,6 +6194,7 @@
         {
           "telegramId": null,
           "matchNo": 117147,
+          "status": null,
           "date": "2027-04-03",
           "time": "20:00",
           "home": {
@@ -6028,6 +6218,7 @@
         {
           "telegramId": null,
           "matchNo": 117151,
+          "status": null,
           "date": "2027-04-10",
           "time": null,
           "home": {
@@ -6051,6 +6242,7 @@
         {
           "telegramId": null,
           "matchNo": 117156,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -6074,6 +6266,7 @@
         {
           "telegramId": null,
           "matchNo": 117162,
+          "status": null,
           "date": "2027-04-24",
           "time": null,
           "home": {
@@ -6097,6 +6290,7 @@
         {
           "telegramId": null,
           "matchNo": 117165,
+          "status": null,
           "date": "2027-05-01",
           "time": null,
           "home": {
@@ -6120,6 +6314,7 @@
         {
           "telegramId": null,
           "matchNo": 117173,
+          "status": null,
           "date": "2027-05-08",
           "time": null,
           "home": {
@@ -6143,6 +6338,7 @@
         {
           "telegramId": null,
           "matchNo": 117174,
+          "status": null,
           "date": "2027-05-22",
           "time": null,
           "home": {
@@ -6166,6 +6362,7 @@
         {
           "telegramId": null,
           "matchNo": 117183,
+          "status": null,
           "date": "2027-05-30",
           "time": "13:30",
           "home": {
@@ -6189,6 +6386,7 @@
         {
           "telegramId": null,
           "matchNo": 117185,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {
@@ -6221,6 +6419,7 @@
         {
           "telegramId": null,
           "matchNo": 702083,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-07-25",
           "time": "18:00",
           "home": {
@@ -6244,6 +6443,7 @@
         {
           "telegramId": 4369561,
           "matchNo": 705261,
+          "status": null,
           "date": "2026-07-30",
           "time": "20:00",
           "home": {
@@ -6267,6 +6467,7 @@
         {
           "telegramId": 4304879,
           "matchNo": 700098,
+          "status": null,
           "date": "2026-08-07",
           "time": "20:00",
           "home": {
@@ -6290,6 +6491,7 @@
         {
           "telegramId": 4312820,
           "matchNo": 702911,
+          "status": null,
           "date": "2026-08-11",
           "time": "20:00",
           "home": {
@@ -6313,6 +6515,7 @@
         {
           "telegramId": 4396020,
           "matchNo": 706265,
+          "status": null,
           "date": "2026-08-14",
           "time": "20:00",
           "home": {
@@ -6336,6 +6539,7 @@
         {
           "telegramId": null,
           "matchNo": 700749,
+          "status": "Spiel findet nicht statt (keine Neuansetzung)",
           "date": "2026-08-14",
           "time": "20:00",
           "home": {
@@ -6359,6 +6563,7 @@
         {
           "telegramId": null,
           "matchNo": 117101,
+          "status": null,
           "date": "2026-08-22",
           "time": "19:30",
           "home": {
@@ -6382,6 +6587,7 @@
         {
           "telegramId": null,
           "matchNo": 117107,
+          "status": null,
           "date": "2026-08-30",
           "time": "15:00",
           "home": {
@@ -6405,6 +6611,7 @@
         {
           "telegramId": null,
           "matchNo": 117110,
+          "status": null,
           "date": "2026-09-05",
           "time": "19:30",
           "home": {
@@ -6428,6 +6635,7 @@
         {
           "telegramId": null,
           "matchNo": 117118,
+          "status": null,
           "date": "2026-09-10",
           "time": "20:00",
           "home": {
@@ -6451,6 +6659,7 @@
         {
           "telegramId": null,
           "matchNo": 117119,
+          "status": null,
           "date": "2026-09-26",
           "time": "19:30",
           "home": {
@@ -6474,6 +6683,7 @@
         {
           "telegramId": null,
           "matchNo": 117128,
+          "status": null,
           "date": "2026-10-03",
           "time": "19:30",
           "home": {
@@ -6497,6 +6707,7 @@
         {
           "telegramId": null,
           "matchNo": 117130,
+          "status": null,
           "date": "2026-10-11",
           "time": "13:30",
           "home": {
@@ -6520,6 +6731,7 @@
         {
           "telegramId": null,
           "matchNo": 117137,
+          "status": null,
           "date": "2026-10-17",
           "time": "19:30",
           "home": {
@@ -6543,6 +6755,7 @@
         {
           "telegramId": null,
           "matchNo": 117141,
+          "status": null,
           "date": "2026-10-24",
           "time": "18:00",
           "home": {
@@ -6566,6 +6779,7 @@
         {
           "telegramId": null,
           "matchNo": 117146,
+          "status": null,
           "date": "2027-04-03",
           "time": "18:00",
           "home": {
@@ -6589,6 +6803,7 @@
         {
           "telegramId": null,
           "matchNo": 117152,
+          "status": null,
           "date": "2027-04-10",
           "time": "19:30",
           "home": {
@@ -6612,6 +6827,7 @@
         {
           "telegramId": null,
           "matchNo": 117155,
+          "status": null,
           "date": "2027-04-17",
           "time": "18:00",
           "home": {
@@ -6635,6 +6851,7 @@
         {
           "telegramId": null,
           "matchNo": 117163,
+          "status": null,
           "date": "2027-04-24",
           "time": "19:30",
           "home": {
@@ -6658,6 +6875,7 @@
         {
           "telegramId": null,
           "matchNo": 117164,
+          "status": null,
           "date": "2027-05-01",
           "time": null,
           "home": {
@@ -6681,6 +6899,7 @@
         {
           "telegramId": null,
           "matchNo": 117173,
+          "status": null,
           "date": "2027-05-08",
           "time": null,
           "home": {
@@ -6704,6 +6923,7 @@
         {
           "telegramId": null,
           "matchNo": 117175,
+          "status": null,
           "date": "2027-05-22",
           "time": "19:30",
           "home": {
@@ -6727,6 +6947,7 @@
         {
           "telegramId": null,
           "matchNo": 117182,
+          "status": null,
           "date": "2027-05-29",
           "time": "20:15",
           "home": {
@@ -6750,6 +6971,7 @@
         {
           "telegramId": null,
           "matchNo": 117186,
+          "status": null,
           "date": "2027-06-06",
           "time": "14:00",
           "home": {

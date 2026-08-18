@@ -795,11 +795,17 @@ const COMPETITION = {
 };
 
 /**
- * Wettbewerb einer Partie bestimmen. Die verlaessliche Quelle ist der
- * Telegramm-Kopf ("Meisterschaft - 4. Liga / Gruppe 2", "Cup - IFV-Cup -
- * Runde 1", "Trainingsspiele"). Fehlt der Bericht, hilft die Zugehoerigkeit
- * zum eigenen Spielplan und sonst der Nummernkreis: Vorbereitungsspiele
- * liegen bei 7xxxxx, Meisterschaftsspiele darunter.
+ * Wettbewerb einer Partie bestimmen.
+ *
+ * Verlaesslich ist der Telegramm-Kopf ("Meisterschaft - 4. Liga / Gruppe 2",
+ * "Cup - IFV-Cup - Runde 1", "Trainingsspiele"). Nur: bei Forfait-Partien
+ * gibt es keinen Bericht. Dann traegt die Spielnummer die Information - ihr
+ * Nummernkreis ist im ganzen System einheitlich vergeben:
+ *
+ *   1xxxxx  Meisterschaft      5xxxxx  Cup      7xxxxx  Trainingsspiele
+ *
+ * Gegengeprueft am Datensatz der 4. Liga Gruppe 2: alle 26 Berichte im
+ * 7er-Kreis lauten "Trainingsspiele", beide Berichte im 5er-Kreis "Cup".
  */
 function classifyMatch(competition, match, ownFixtureIds) {
   if (match.telegramId && ownFixtureIds.has(match.telegramId)) return 'liga';
@@ -808,8 +814,12 @@ function classifyMatch(competition, match, ownFixtureIds) {
   if (/^Cup|Cup\s*-/i.test(c)) return 'cup';
   if (/Trainings|Freundschaft|Vorbereitung/i.test(c)) return 'test';
   if (c) return 'other';
-  if (match.matchNo && match.matchNo >= 700000) return 'test';
-  return match.matchNo ? 'liga' : 'other';
+
+  const bucket = Math.floor((match.matchNo ?? 0) / 100000);
+  if (bucket === 7) return 'test';
+  if (bucket === 5) return 'cup';
+  if (bucket === 1) return 'liga';
+  return 'other';
 }
 
 /** Ein Telegramm ausserhalb des eigenen Spielplans in Match-Form bringen. */
@@ -856,6 +866,10 @@ function buildDossiers(raw, teamIndex) {
         const opponent = side === 'home' ? m.away : m.home;
         const gf = side === 'home' ? m.homeGoals : m.awayGoals;
         const ga = side === 'home' ? m.awayGoals : m.homeGoals;
+        // Eine Nullwertung ist kein Resultat: die Partie wurde annulliert
+        // oder gar nie gespielt. Sie darf weder in Bilanz noch in Form.
+        const voided = /nullwertung|annulliert/i.test(m.status ?? '');
+        const counts = m.played && !voided;
         return {
           id: m.telegramId ?? m.matchNo,
           telegramId: m.telegramId,
@@ -864,13 +878,15 @@ function buildDossiers(raw, teamIndex) {
           type,
           competition: report?.competition ?? COMPETITION[type],
           venue: report?.venue ?? null,
+          status: m.status ?? null,
+          voided,
           side,
           opponent: opponent.name,
           opponentTier: opponent.tier,
-          goalsFor: gf,
-          goalsAgainst: ga,
-          played: m.played,
-          outcome: m.played ? (gf > ga ? 'W' : gf === ga ? 'D' : 'L') : null,
+          goalsFor: counts ? gf : null,
+          goalsAgainst: counts ? ga : null,
+          played: counts,
+          outcome: counts ? (gf > ga ? 'W' : gf === ga ? 'D' : 'L') : null,
           hasReport: !!report,
         };
       })
@@ -1130,9 +1146,11 @@ function indexTeamMatches(built, index, { extrasOnly = false } = {}) {
     if (!index[key]) index[key] = { name, competitions: [], matches: [], _seen: [] };
     const seen = index[key]._seen;
     // Dieselbe Partie kann in zwei Datensaetzen liegen (Cup-Wettbewerb und
-    // Team-Spielplan des Gegners) - der Wettbewerb selbst hat Vorrang.
-    if (row.id && seen.includes(row.id)) return;
-    if (row.id) seen.push(row.id);
+    // Team-Spielplan des Gegners) - der Wettbewerb selbst hat Vorrang. Die IDs
+    // unterscheiden sich dabei, deshalb zusaetzlich ueber Datum und Gegner.
+    const keys = [row.id ? `id:${row.id}` : null, `d:${row.date}|${slug(row.opponent)}`].filter(Boolean);
+    if (keys.some((k) => seen.includes(k))) return;
+    seen.push(...keys);
     index[key].matches.push(row);
   };
 
@@ -1179,7 +1197,32 @@ function indexTeamMatches(built, index, { extrasOnly = false } = {}) {
     record(m, type, m.competition ?? 'Weiteres');
   }
 
-  if (extrasOnly) return;
+  // Partien aus den Gegner-Dossiers: Vorbereitung und Cup, teils ohne Bericht
+  // und damit in keinem anderen Datensatz enthalten.
+  if (extrasOnly) {
+    for (const dos of built.dossiers ?? []) {
+      for (const m of dos.matches) {
+        push(dos.team, {
+          id: m.id,
+          date: m.date,
+          time: m.time ?? null,
+          competitionKey: meta.key,
+          competition: m.competition,
+          seasonLabel: meta.seasonLabel,
+          type: m.type,
+          side: m.side,
+          opponent: m.opponent,
+          goalsFor: m.goalsFor,
+          goalsAgainst: m.goalsAgainst,
+          played: m.played,
+          outcome: m.outcome,
+          status: m.status ?? null,
+          hasReport: m.hasReport,
+        });
+      }
+    }
+    return;
+  }
 
   // Teilnahme je Wettbewerb vermerken, inklusive Schlussrang falls vorhanden.
   const names = new Set([...built.matches.flatMap((m) => [m.home?.name, m.away?.name])].filter(Boolean));
